@@ -1,2 +1,2 @@
-# JugglingRacdoons
-Juggling racdoons the game jam game. 
+# JugglingRaccoons
+Juggling raccoons the game jam game. 
