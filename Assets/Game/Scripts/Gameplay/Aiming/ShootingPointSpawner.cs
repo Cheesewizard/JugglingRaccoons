@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace JugglingRaccoons.Core
+namespace JugglingRaccoons.Gameplay.Aiming
 {
 	public class ShootingPointSpawner : MonoBehaviour
 	{
