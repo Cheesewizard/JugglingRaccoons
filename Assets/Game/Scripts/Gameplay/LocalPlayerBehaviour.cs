@@ -14,7 +14,7 @@ namespace JugglingRaccoons.Gameplay
         private void Awake()
         {
             // Disable the raccoon at the start of the game as we should be in the main menu
-            //raccoonObject.SetActive(false);
+            raccoonObject.SetActive(false);
         }
     }
 }
