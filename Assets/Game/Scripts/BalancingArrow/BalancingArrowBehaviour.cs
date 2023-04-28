@@ -24,7 +24,7 @@ public class BalancingArrowBehaviour : MonoBehaviour
 	[SerializeField]
 	private float noiseBias = 0.04f;
 
-	private InputManager inputManager;
+	private PlayerInputHandler playerInputHandler;
 	private float balanceInput = 0.0f;
 	private float currentRotation = 0.0f;
 	private bool hasLostBalance = false;
@@ -35,13 +35,12 @@ public class BalancingArrowBehaviour : MonoBehaviour
 	private event Action OnDangerZoneEnter;
 	private event Action OnDangerZoneExit;
 
-	private void Awake() => inputManager = InputServiceLocator.GetPlayerInput();
+	private void Awake() => playerInputHandler = transform.parent.GetComponent<PlayerInputHandler>();
 
 	private void OnEnable()
 	{
-		inputManager.Enable();
-		inputManager.Gameplay.Balance.performed += UpdateBalanceInput;
-		inputManager.Gameplay.Balance.canceled += ResetBalanceInput;
+		playerInputHandler.BalanceAction.performed += UpdateBalanceInput;
+		playerInputHandler.BalanceAction.canceled += ResetBalanceInput;
 	}
 
 	private void Update()
@@ -51,7 +50,6 @@ public class BalancingArrowBehaviour : MonoBehaviour
 		currentRotation += balanceInput;
 
 		var randomForce = ((Mathf.PerlinNoise1D(Time.time) + noiseBias) * 2 - 1f) * defaultUnbalanceAmount;
-		Debug.Log($"Random Force: {randomForce}");
 		ApplyRotationForce(randomForce);
 		ApplyGravity();
 	}
@@ -87,9 +85,8 @@ public class BalancingArrowBehaviour : MonoBehaviour
 
 	private void OnDisable()
 	{
-		inputManager.Gameplay.Balance.performed -= UpdateBalanceInput;
-		inputManager.Gameplay.Balance.canceled -= ResetBalanceInput;
-		inputManager.Disable();
+		playerInputHandler.BalanceAction.performed -= UpdateBalanceInput;
+		playerInputHandler.BalanceAction.canceled -= ResetBalanceInput;
 	}
 
 	private void UpdateBalanceInput(InputAction.CallbackContext obj) => balanceInput = -obj.ReadValue<float>() * inputStrength;
