@@ -1,7 +1,7 @@
 using Quack.Utils;
 using UnityEngine;
 
-namespace JugglingRaccoons.Core
+namespace JugglingRaccoons.Gameplay.Aiming
 {
 	public class RotateAimer : MonoBehaviour
 	{

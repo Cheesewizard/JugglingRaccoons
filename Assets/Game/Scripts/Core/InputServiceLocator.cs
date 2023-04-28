@@ -2,13 +2,16 @@ using UnityEngine;
 
 namespace JugglingRaccoons.Core
 {
-	public class InputServiceLocator : MonoBehaviour
+	namespace JugglingRaccoons.Core
 	{
-		private static InputManager playerInput;
-
-		public static InputManager GetPlayerInput()
+		public class InputServiceLocator : MonoBehaviour
 		{
-			return playerInput ??= new InputManager();
+			private static InputManager playerInput;
+
+			public static InputManager GetPlayerInput()
+			{
+				return playerInput ??= new InputManager();
+			}
 		}
 	}
 }
