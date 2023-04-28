@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Scripts.Gameplay
+namespace JugglingRaccoons.Gameplay
 {
 	public class JuggleBall : MonoBehaviour
 	{

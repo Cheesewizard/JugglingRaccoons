@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Game.Scripts.Core
+namespace JugglingRaccoons.Core
 {
 	public class InputServiceLocator : MonoBehaviour
 	{
