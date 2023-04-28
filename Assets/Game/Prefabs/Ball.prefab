@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   juggleHeight: 3
-  juggleTime: 1
-  handPassHeight: 0.1
+  juggleTime: 1.25
+  handPassHeight: 0.7
   handPassTime: 0.3
+  rotateSpeed: 123

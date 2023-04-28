@@ -1,23 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace JugglingRaccoons.Gameplay
 {
 	public class JugglingManager : MonoBehaviour
 	{
+		[Header("References")]
 		[SerializeField]
-		private JuggleBall[] balls;
+		private GameObject ballPrefab;
 		[SerializeField]
 		private Transform leftHand;
 		[SerializeField]
 		private Transform rightHand;
 
-		private void Start()
+		[Header("Config")]
+		private int startingBallsCount = 3;
+
+		private HashSet<JuggleBall> balls = new ();
+		
+		private void Awake()
 		{
-			var step = 1f / (balls.Length);
-			var halfStep = step / 2;
-			for (int i = 0; i < balls.Length; i++)
+			for (int i = 0; i < startingBallsCount; i++)
 			{
-				balls[i].SetInitialJugglePosition(i * step + halfStep);
+				var ball = Instantiate(ballPrefab).GetComponent<JuggleBall>();
+				if (!ball)
+				{
+					Debug.LogError("No ballz bro");
+					return;
+				}
+				
+				balls.Add(ball);
+				var step = 1f / (startingBallsCount);
+				var halfStep = step / 2;
+				ball.SetInitialJugglePosition(i * step + halfStep);
 			}
 		}
 
@@ -29,6 +45,22 @@ namespace JugglingRaccoons.Gameplay
 			}
 		}
 
+		[Button(ButtonSizes.Medium, DrawResult = false)]
+		private void AddBall()
+		{
+			var ball = Instantiate(ballPrefab).GetComponent<JuggleBall>();
+			if (!ball)
+			{
+				Debug.LogError("No ballz bro");
+				return;
+			}
+				
+			balls.Add(ball);
+			ball.SetInitialJugglePosition(0);
+			
+			//TODO: recompute correct step for all balls to be distanced
+		}
+		
 		public static Vector3 GetParabolicPoint(Vector3 start, Vector3 end, float height, float t)
 		{
 			var y = Mathf.Sin(Mathf.PI * t) * height;
