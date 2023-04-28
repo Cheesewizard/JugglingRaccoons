@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game.Scripts.Gameplay
+namespace JugglingRaccoons.Gameplay
 {
 	public class JugglingManager : MonoBehaviour
 	{

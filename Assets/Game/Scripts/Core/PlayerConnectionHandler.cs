@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerConnectionHandler : MonoBehaviour
+namespace JugglingRaccoons.Core
 {
-	[SerializeField]
-	private List<Transform> spawnPositions = new();
-
-	public void OnPlayerJoined(PlayerInput playerInput)
+	public class PlayerConnectionHandler : MonoBehaviour
 	{
-		// Set the player at it's spawn position
-		playerInput.transform.position = spawnPositions[playerInput.playerIndex].transform.position;
-	}
+		[SerializeField] private List<Transform> spawnPositions = new();
 
-	public void OnPlayerLeft()
-	{
-		// May not need this
+		public void OnPlayerJoined(PlayerInput playerInput)
+		{
+			// Set the player at it's spawn position
+			playerInput.transform.position = spawnPositions[playerInput.playerIndex].transform.position;
+		}
+
+		public void OnPlayerLeft()
+		{
+			// May not need this
+		}
 	}
 }
