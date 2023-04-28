@@ -2,26 +2,30 @@ using System;
 using JugglingRaccoons.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace JugglingRaccoons.BalancingArrow
+namespace JugglingRaccoons.Gameplay.BalancingArrow
 {
 	public class BalancingArrowBehaviour : MonoBehaviour
 	{
-		[SerializeField, Range(0, 360)] private float angleLimit = 45f;
+		[SerializeField, Range(0, 360)]
+		private float angleLimit = 45f;
 
-		[SerializeField, Range(0, 360)] private float dangerZoneAngle = 35f;
+		[SerializeField, Range(0, 360)]
+		private float dangerZoneAngle = 35f;
 
-		[SerializeField] private float inputStrength = 0.5f;
+		[SerializeField]
+		private float inputStrength = 0.5f;
 
-		[SerializeField] private float defaultUnbalanceAmount = 0.3f;
+		[SerializeField]
+		private float defaultUnbalanceAmount = 0.3f;
 
-		[SerializeField] private float gravityStrength = 0.1f;
+		[SerializeField]
+		private float gravityStrength = 0.1f;
 
-		[SerializeField] private float noiseBias = 0.04f;
+		[SerializeField]
+		private float noiseBias = 0.04f;
 
 		private PlayerInputHandler playerInputHandler;
-		private float balanceInput = 0.0f;
 		private float currentRotation = 0.0f;
 		private bool hasLostBalance = false;
 		private bool inDangerZone = false;
@@ -33,17 +37,11 @@ namespace JugglingRaccoons.BalancingArrow
 
 		private void Awake() => playerInputHandler = transform.parent.GetComponent<PlayerInputHandler>();
 
-		private void OnEnable()
-		{
-			playerInputHandler.BalanceAction.performed += UpdateBalanceInput;
-			playerInputHandler.BalanceAction.canceled += ResetBalanceInput;
-		}
-
 		private void Update()
 		{
 			if (hasLostBalance) return;
 
-			currentRotation += balanceInput;
+			currentRotation += -playerInputHandler.BalanceValue * inputStrength;
 
 			var randomForce = ((Mathf.PerlinNoise1D(Time.time) + noiseBias) * 2 - 1f) * defaultUnbalanceAmount;
 			ApplyRotationForce(randomForce);
@@ -78,17 +76,6 @@ namespace JugglingRaccoons.BalancingArrow
 				BalanceLost();
 			}
 		}
-
-		private void OnDisable()
-		{
-			playerInputHandler.BalanceAction.performed -= UpdateBalanceInput;
-			playerInputHandler.BalanceAction.canceled -= ResetBalanceInput;
-		}
-
-		private void UpdateBalanceInput(InputAction.CallbackContext obj) =>
-			balanceInput = -obj.ReadValue<float>() * inputStrength;
-
-		private void ResetBalanceInput(InputAction.CallbackContext obj) => balanceInput = 0f;
 
 		private void ApplyRotationForce(float force) => currentRotation += force;
 
