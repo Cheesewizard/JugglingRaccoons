@@ -36,6 +36,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 
 		private void SpawnAtRandomLocation(float targetDistance)
 		{
+			var flip = (transform.parent.localScale.x < 0);
 			var randomAngle = Random.Range(minAngle - edgeMargin, maxAngle + edgeMargin);
 
 			var randomPointOnCircumference = new Vector2(
@@ -43,7 +44,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 				circleRadius * Mathf.Sin(randomAngle * Mathf.Deg2Rad)
 			);
 
-			var circleCenter = targetZonePrefab.transform.position;
+			var circleCenter = transform.position;
 			var spawnPosition = (Vector2) circleCenter + randomPointOnCircumference;
 
 			var angle = Mathf.Atan2(spawnPosition.y - circleCenter.y, spawnPosition.x - circleCenter.x) * Mathf.Rad2Deg;
@@ -60,6 +61,12 @@ namespace JugglingRaccoons.Gameplay.Aiming
 			angle = Mathf.Atan2(spawnPosition.y - circleCenter.y, spawnPosition.x - circleCenter.x) * Mathf.Rad2Deg;
 			spawnedTargetZoneTwo = Instantiate(targetZonePrefab, spawnPosition,
 				Quaternion.Euler(0f, 0f, angle));
+
+			if (flip)
+			{
+				spawnedTargetZoneOne.transform.RotateAround(transform.position, Vector3.up, 180);
+				spawnedTargetZoneTwo.transform.RotateAround(transform.position, Vector3.up, 180);
+			}
 		}
 
 		public bool CheckIfBetweenPoints(float targetAngle)
