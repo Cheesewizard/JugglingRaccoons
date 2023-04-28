@@ -77,7 +77,8 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			}
 		}
 
-		private void ApplyRotationForce(float force) => currentRotation += force;
+		// This can be used for adding a rotation value (degrees)
+		public void ApplyRotationForce(float force) => currentRotation += force;
 
 		private void ApplyGravity()
 		{
