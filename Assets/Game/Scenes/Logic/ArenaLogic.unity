@@ -407,10 +407,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6406485585309919160, guid: 4880505d751f0fc4a8553b668bb2081e, type: 3}
-      propertyPath: spawnPositions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6406485585309919160, guid: 4880505d751f0fc4a8553b668bb2081e, type: 3}
       propertyPath: spawnPositions.Array.data[0]
       value: 
       objectReference: {fileID: 831233549}

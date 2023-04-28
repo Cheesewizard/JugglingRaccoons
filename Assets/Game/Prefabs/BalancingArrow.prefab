@@ -317,7 +317,7 @@ Transform:
   m_Children:
   - {fileID: 2295172640426035396}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5890882370786847402
 MonoBehaviour:
@@ -334,6 +334,7 @@ MonoBehaviour:
   angleLimit: 45
   dangerZoneAngle: 35
   inputStrength: 0.2
-  defaultUnbalanceAmount: 0.14
+  defaultUnbalanceAmount: 0.3
   gravityStrength: 0.4
   noiseBias: 0.04
+  playerInputHandler: {fileID: 0}

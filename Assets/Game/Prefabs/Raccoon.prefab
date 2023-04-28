@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8778679913795353151}
-  - component: {fileID: 5385562339658196779}
-  - component: {fileID: 6987370315149111016}
   m_Layer: 0
   m_Name: Raccoon
   m_TagString: Untagged
@@ -35,49 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5385562339658196779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8842179642819146127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d8f1bd690b7f15b4babdcfd09695f05a, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &6987370315149111016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8842179642819146127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f890d72e383eeba4aaae833f27cdccc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BalanceAction>k__BackingField: {fileID: -344578990189221178, guid: d8f1bd690b7f15b4babdcfd09695f05a, type: 3}
 --- !u!1001 &4670036473277583753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86,14 +41,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8778679913795353151}
     m_Modifications:
-    - target: {fileID: 5890882370786847402, guid: de58a30a1b5a27b4a8b418758f14916f, type: 3}
-      propertyPath: gravityStrength
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5890882370786847402, guid: de58a30a1b5a27b4a8b418758f14916f, type: 3}
-      propertyPath: defaultUnbalanceAmount
-      value: 0.0001
-      objectReference: {fileID: 0}
     - target: {fileID: 6183909437415783850, guid: de58a30a1b5a27b4a8b418758f14916f, type: 3}
       propertyPath: m_Name
       value: BalancingArrow

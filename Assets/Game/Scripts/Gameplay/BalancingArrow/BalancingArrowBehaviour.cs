@@ -25,7 +25,9 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		[SerializeField]
 		private float noiseBias = 0.04f;
 
+		[SerializeField]
 		private PlayerInputHandler playerInputHandler;
+
 		private float currentRotation = 0.0f;
 		private bool hasLostBalance = false;
 		private bool inDangerZone = false;
@@ -34,8 +36,6 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private event Action OnBalanceLost;
 		private event Action OnDangerZoneEnter;
 		private event Action OnDangerZoneExit;
-
-		private void Awake() => playerInputHandler = transform.parent.GetComponent<PlayerInputHandler>();
 
 		private void Update()
 		{
