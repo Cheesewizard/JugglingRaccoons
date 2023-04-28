@@ -179,7 +179,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 798722290}
-  - component: {fileID: 798722291}
   - component: {fileID: 798722292}
   m_Layer: 0
   m_Name: LeftHand
@@ -203,20 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &798722291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798722286}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae3bc890e714905b3e04c9d87766e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bopDistance: 1
-  bopTime: 1
 --- !u!212 &798722292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -278,7 +263,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 946533522}
-  - component: {fileID: 946533523}
   - component: {fileID: 946533524}
   m_Layer: 0
   m_Name: RightHand
@@ -302,20 +286,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &946533523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946533518}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae3bc890e714905b3e04c9d87766e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bopDistance: 1
-  bopTime: 1
 --- !u!212 &946533524
 SpriteRenderer:
   m_ObjectHideFlags: 0
