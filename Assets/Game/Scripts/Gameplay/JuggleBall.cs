@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace JugglingRaccoons.Gameplay
 {
@@ -12,7 +13,9 @@ namespace JugglingRaccoons.Gameplay
 		private float handPassHeight = 0.1f;
 		[SerializeField]
 		private float handPassTime = 0.3f;
-
+		[SerializeField]
+		private float rotateSpeed = 123f;
+		
 		private float totalJuggleTime => juggleTime + handPassTime;
 
 		private float time;
@@ -21,6 +24,7 @@ namespace JugglingRaccoons.Gameplay
 		public void SetInitialJugglePosition(float t)
 		{
 			time = juggleTime * t;
+			transform.Rotate(0,0, Random.Range(0, 360));
 			Debug.Log($"Setting t to {t}");
 		}
 
@@ -39,6 +43,7 @@ namespace JugglingRaccoons.Gameplay
 			var t = (isPassing) ? 1 - passT : juggleT;
 
 			transform.position = JugglingManager.GetParabolicPoint(start, end, height, t);
+			transform.Rotate(0,0, rotateSpeed * Time.deltaTime);
 		}
 	}
 }
