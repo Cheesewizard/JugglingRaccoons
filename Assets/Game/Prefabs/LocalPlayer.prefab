@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2719467359315304599}
   - component: {fileID: 8224064644636367520}
   - component: {fileID: 3816609806133360182}
+  - component: {fileID: 3395973409818313951}
   m_Layer: 0
   m_Name: LocalPlayer
   m_TagString: Untagged
@@ -76,6 +77,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f890d72e383eeba4aaae833f27cdccc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3395973409818313951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578126155497583302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc34a04d37532e944abe0ee81697e9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raccoonObject: {fileID: 7851863106132779867}
+  BallAimerPivotTransform: {fileID: 1044510932322516849}
 --- !u!1001 &1604073585618899668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +156,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+--- !u!4 &1044510932322516849 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1746280950783716773, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7851863106132779867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8842179642819146127, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8040881038194780395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8778679913795353151, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
