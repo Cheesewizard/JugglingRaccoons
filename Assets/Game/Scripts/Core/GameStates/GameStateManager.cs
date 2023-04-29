@@ -8,10 +8,10 @@ namespace JugglingRaccoons.Core.GameStates
         public static GameStateManager Instance { get; private set; }
 
         [SerializeField]
-        private GameState startingGameState;
+        private AbstractGameState startingAbstractGameState;
 
-        private GameState currentGameState;
-        private List<GameState> gameStates = new();
+        private AbstractGameState _currentAbstractGameState;
+        private List<AbstractGameState> gameStates = new();
 
         private void Awake()
         {
@@ -30,27 +30,27 @@ namespace JugglingRaccoons.Core.GameStates
             for (int i = 0; i < transform.childCount; i++)
             {
                 var childObject = transform.GetChild(i).gameObject;
-                var childGameState = childObject.GetComponent<GameState>();
+                var childGameState = childObject.GetComponent<AbstractGameState>();
                 if (childGameState != null)
                 {
                     gameStates.Add(childGameState);
                     childObject.SetActive(false);
                 }
             }
-            currentGameState = startingGameState;
+            _currentAbstractGameState = startingAbstractGameState;
         }
 
         private void Start()
         {
             // Activate the currentState
-            currentGameState.gameObject.SetActive(true);
+            _currentAbstractGameState.gameObject.SetActive(true);
         }
 
-        public void ChangeGameState(GameState state)
+        public void ChangeGameState(AbstractGameState state)
         {
-            currentGameState.gameObject.SetActive(false);
+            _currentAbstractGameState.gameObject.SetActive(false);
             state.gameObject.SetActive(true);
-            currentGameState = state;
+            _currentAbstractGameState = state;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JugglingRaccoons.Core.GameStates
 {
-    public class GameplayState : GameState
+    public class GameplayState : AbstractGameState
     {
         public static event Action OnGameplayStateEntered;
         public static event Action OnGameplayStateExited;
