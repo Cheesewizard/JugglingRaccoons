@@ -1,3 +1,4 @@
+using JugglingRaccoons.Gameplay.Aiming;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,10 +11,20 @@ namespace JugglingRaccoons.Gameplay
 
         [field: SerializeField, Required]
         public Transform BallAimerPivotTransform;
+        
+        [field: SerializeField, Required]
+        public JugglingBehaviour JugglingBehaviour { get; private set; }
 
+        [field: SerializeField, Required]
+        public ShootingInput ShootingInput { get; private set; }
+
+        [SerializeField]
+        private bool disableInAwake = true;
+        
         private void Awake()
         {
-            // Disable the raccoon at the start of the game as we should be in the main menu
+            if (!disableInAwake) return;
+            
             raccoonObject.SetActive(false);
         }
     }

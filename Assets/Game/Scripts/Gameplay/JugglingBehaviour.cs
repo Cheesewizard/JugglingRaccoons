@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using JugglingRaccoons.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace JugglingRaccoons.Gameplay
 {
 	public class JugglingBehaviour : MonoBehaviour
 	{
 		[Header("References")]
+		[SerializeField]
+		private LocalPlayerBehaviour localPlayer;
 		[SerializeField]
 		private GameObject ballPrefab;
 
@@ -68,6 +72,11 @@ namespace JugglingRaccoons.Gameplay
 				ball.OnNewJuggle += HandleNewJuggle;
 			}
 
+			if (localPlayer)
+			{
+				localPlayer.ShootingInput.OnTargetHit += ThrowBallAtOpponent;
+			}
+
 			prevBallsCount = startingBallsCount;
 			readyToReceiveBall = true;
 		}
@@ -92,6 +101,17 @@ namespace JugglingRaccoons.Gameplay
 			}
 			
 			OnBallThrown?.Invoke(ball);
+		}
+
+		private void ThrowBallAtOpponent()
+		{
+			if (!PlayerManager.Instance.TryGetOpponent(localPlayer, out var opponent))
+			{
+				Debug.LogError("NoOpponent");
+				return;
+			}
+			
+			ThrowBall(opponent.JugglingBehaviour);
 		}
 		
 		private async void AddBall(JuggleBall ball)

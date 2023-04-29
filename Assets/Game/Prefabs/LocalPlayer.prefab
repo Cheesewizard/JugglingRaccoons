@@ -91,6 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raccoonObject: {fileID: 7851863106132779867}
   BallAimerPivotTransform: {fileID: 1044510932322516849}
+  <JugglingBehaviour>k__BackingField: {fileID: 1318985682827474097}
+  <ShootingInput>k__BackingField: {fileID: 3732316416746994116}
+  disableInAwake: 0
 --- !u!1001 &1604073585618899668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,6 +102,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2719467359315304599}
     m_Modifications:
+    - target: {fileID: 292498752913483365, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: localPlayer
+      value: 
+      objectReference: {fileID: 3395973409818313951}
     - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: playerInputHandler
       value: 
@@ -165,6 +172,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1746280950783716773, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
   m_PrefabInstance: {fileID: 1604073585618899668}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1318985682827474097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 292498752913483365, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6641003026fa42e98583193ff3dddc4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3732316416746994116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf53ce5dbd9ae146b87203cf3810177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7851863106132779867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8842179642819146127, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
