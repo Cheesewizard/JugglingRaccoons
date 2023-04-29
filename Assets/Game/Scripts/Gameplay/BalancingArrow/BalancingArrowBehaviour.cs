@@ -46,10 +46,13 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private bool inDangerZone = false;
 		private float currentUnbalanceAmount = 0.0f;
 		private JugglingBehaviour jugglingBehaviour;
+		private bool goingRight = false;
 
-		private event Action<int> OnBalanceLost;
-		private event Action OnDangerZoneEnter;
-		private event Action OnDangerZoneExit;
+		public event Action<int> OnBalanceLost;
+		public event Action OnDangerZoneEnter;
+		public event Action OnDangerZoneExit;
+		public event Action OnFallingLeft;
+		public event Action OnFallingRight;
 
 		private void Start()
 		{
@@ -82,6 +85,26 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationFollowSpeed * Time.deltaTime);
 
 			var rotation = transform.rotation.eulerAngles.z;
+
+			// Check which direction the player is going
+			if (goingRight)
+			{
+				// Check if we're now going left
+				if (rotation <= 180f)
+				{
+					goingRight = false;
+					OnFallingLeft?.Invoke();
+				}
+			}
+			else
+			{
+				// Check if we're now going right
+				if (rotation >= 180f)
+				{
+					goingRight = true;
+					OnFallingRight?.Invoke();
+				}
+			}
 
 			// Check if we're in the danger zone
 			if (rotation >= dangerZoneAngle && rotation <= 360f - dangerZoneAngle)

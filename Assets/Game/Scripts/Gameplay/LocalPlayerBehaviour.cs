@@ -1,4 +1,5 @@
 using JugglingRaccoons.Gameplay.Aiming;
+using JugglingRaccoons.Gameplay.BalancingArrow;
 using JugglingRaccoons.Gameplay.Juggling;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -12,20 +13,23 @@ namespace JugglingRaccoons.Gameplay
 
         [field: SerializeField, Required]
         public Transform BallAimerPivotTransform;
-        
+
         [field: SerializeField, Required]
         public JugglingBehaviour JugglingBehaviour { get; private set; }
 
         [field: SerializeField, Required]
         public ShootingInput ShootingInput { get; private set; }
 
+        [field: SerializeField, Required]
+        public BalancingArrowBehaviour BalancingArrowBehaviour { get; private set; }
+
         [SerializeField]
         private bool disableInAwake = true;
-        
+
         private void Awake()
         {
             if (!disableInAwake) return;
-            
+
             raccoonObject.SetActive(false);
         }
     }
