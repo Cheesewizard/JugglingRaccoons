@@ -7,18 +7,22 @@ namespace JugglingRaccoons.Gameplay
 		[SerializeField]
 		private GameObject yay;
 		[SerializeField]
-		private GameObject hide;
-
+		private GameObject hideLeft;
+		[SerializeField]
+		private GameObject hideRight;
+		
 		public void ChangeState(PillarBoiState state)
 		{
 			yay.SetActive(state == PillarBoiState.Yay);
-			hide.SetActive(state == PillarBoiState.Hide);
+			hideLeft.SetActive(state == PillarBoiState.HideLeft);
+			hideRight.SetActive(state == PillarBoiState.HideRight);
 		}
 	}
 
 	public enum PillarBoiState
 	{
 		Yay,
-		Hide
+		HideLeft,
+		HideRight
 	}
 }
