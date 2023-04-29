@@ -49,7 +49,6 @@ namespace JugglingRaccoons.Gameplay.Aiming
                 else
                 {
                     Debug.Log($"Player {playerInputHandler.PlayerId + 1} missed the target!");
-                    //IncrementTargetDistance(); WRONG
                     OnTargetMissed?.Invoke();
                 }
 
@@ -64,6 +63,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
             currentTargetDistance = Mathf.Max(currentTargetDistance, minTargetDistance);
         }
 
+        // TODO: Call this when you receive a ball
         private void IncrementTargetDistance()
         {
             currentTargetDistance += targetReductionPerBall;
