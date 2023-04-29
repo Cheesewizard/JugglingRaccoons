@@ -99,11 +99,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2719467359315304599}
     m_Modifications:
-    - target: {fileID: 1229433374356568867, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: playerInputHandler
       value: 
       objectReference: {fileID: 3816609806133360182}
-    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+    - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: playerInputHandler
       value: 
       objectReference: {fileID: 3816609806133360182}
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8842179642819146127, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_Name
-      value: Raccoon
+      value: GamplayLogic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

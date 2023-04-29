@@ -26,6 +26,9 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private float noiseBias = 0.04f;
 
 		[SerializeField]
+		private float rotationFollowSpeed = 10f;
+
+		[SerializeField]
 		private PlayerInputHandler playerInputHandler;
 
 		private float currentRotation = 0.0f;
@@ -53,10 +56,8 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			if (hasLostBalance) return;
 
 			// Smoothly move to the target rotation
-			var lerpedRotation = Mathf.Lerp(previousRotation, currentRotation, 0.5f * Time.deltaTime);
-			previousRotation = currentRotation;
-			var newRotation = Quaternion.Euler(0, 0, lerpedRotation);
-			transform.rotation = newRotation;
+			var newRotation = Quaternion.Euler(0, 0, currentRotation);
+			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationFollowSpeed * Time.deltaTime);
 
 			var rotation = transform.rotation.eulerAngles.z;
 
