@@ -68,7 +68,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 
 			currentRotation += -playerInputHandler.BalanceValue * inputStrength;
 
-			var randomForce = ((Mathf.PerlinNoise1D(Time.time) + noiseBias) * 2 - 1f) * currentUnbalanceAmount;
+			var randomForce = ((Mathf.PerlinNoise1D(Time.time + playerInputHandler.PlayerId * 100f) + noiseBias) * 2 - 1f) * currentUnbalanceAmount;
 			ApplyRotationForce(randomForce);
 			ApplyGravity();
 		}
