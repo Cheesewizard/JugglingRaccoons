@@ -136,4 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a527266c00a734fb90a80f961efa9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingGameState: {fileID: 1062293243875979552}
+  startingAbstractGameState: {fileID: 1062293243875979552}

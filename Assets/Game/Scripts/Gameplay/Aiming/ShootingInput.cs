@@ -35,7 +35,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 
         private void Update()
         {
-            if (playerInputHandler == null) return;
+            if (playerInputHandler == null || !shootingPointSpawner.isActiveAndEnabled) return;
 
             bool isWithinTarget = shootingPointSpawner.CheckIfBetweenPoints(shootingPointSpawner.arrowPointer.transform.rotation.z); // Change this to whatever target angle is supposed to be
             if (playerInputHandler.ThrowActionPressed)

@@ -14,7 +14,10 @@ namespace JugglingRaccoons.Core.GameStates
         private void OnEnable()
         {
             OnMainMenuStateEntered?.Invoke();
+        }
 
+        private void Start()
+        {
             // TODO: Add main menu functionality. For now, just move to gameplay state
             GameStateManager.Instance.ChangeGameState(gameplayState);
         }

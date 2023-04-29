@@ -1,4 +1,5 @@
 using JugglingRaccoons.Gameplay.Aiming;
+using JugglingRaccoons.Gameplay.Juggling;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

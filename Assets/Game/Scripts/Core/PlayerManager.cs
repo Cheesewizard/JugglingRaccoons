@@ -52,11 +52,8 @@ namespace JugglingRaccoons.Core
 				// Flip the X scale for the ball aimer for the second player
 				if (playerInput.playerIndex == 1)
 				{
-					var pivot = localPlayer.BallAimerPivotTransform;
-					if (pivot != null)
-					{
-						pivot.localScale = new Vector3(-pivot.localScale.x, pivot.localScale.y, pivot.localScale.z);
-					}
+					var scale = localPlayer.transform.localScale;
+					localPlayer.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
 				}
 			}
 		}
