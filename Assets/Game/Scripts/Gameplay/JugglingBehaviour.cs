@@ -45,6 +45,8 @@ namespace JugglingRaccoons.Gameplay
 		private bool readyToReceiveBall;
 		
 		public event Action<JugglingBehaviour> OnReadyToReceiveBall;
+		public event Action<JuggleBall> OnBallThrown;
+		public event Action<JuggleBall> OnBallCatched;
 		
 		private void Awake()
 		{
@@ -88,6 +90,8 @@ namespace JugglingRaccoons.Gameplay
 				target.AddBall(ball);
 				ball.OnReachedTarget -= BallOnOnReachedTarget;
 			}
+			
+			OnBallThrown?.Invoke(ball);
 		}
 		
 		private async void AddBall(JuggleBall ball)
@@ -105,6 +109,9 @@ namespace JugglingRaccoons.Gameplay
 			ball.Delay = float.MaxValue;
 			ball.OnNewJuggle += HandleNewJuggle;
 			ball.transform.position = StartingHand.position;
+			
+			OnBallCatched?.Invoke(ball);
+			
 			// Await until the first ball reaches the starting hand
 			await UniTask.WaitUntil(() => isNewJuggle);
 			ball.Delay = 0;
