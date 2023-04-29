@@ -11,7 +11,10 @@ namespace JugglingRaccoons.Gameplay.Aiming
         private PlayerInputHandler playerInputHandler;
 
         [SerializeField]
-        private float minTargetDistance = 5f;
+        private float minTargetDistance = 20f;
+
+        [SerializeField]
+        private float maxTargetDistance = 40f;
 
         [SerializeField]
         private float targetReductionPerBall = 5f;
@@ -20,7 +23,6 @@ namespace JugglingRaccoons.Gameplay.Aiming
         public event Action OnTargetMissed;
 
         private ShootingPointSpawner shootingPointSpawner;
-        private float originalTargetDistance;
         private float currentTargetDistance;
 
         private void Awake()
@@ -28,8 +30,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
             shootingPointSpawner = GetComponent<ShootingPointSpawner>();
             if (shootingPointSpawner != null)
             {
-                originalTargetDistance = shootingPointSpawner.targetDistance;
-                currentTargetDistance = originalTargetDistance;
+                currentTargetDistance = maxTargetDistance;
             }
         }
 
@@ -67,7 +68,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
         private void IncrementTargetDistance()
         {
             currentTargetDistance += targetReductionPerBall;
-            currentTargetDistance = Mathf.Min(currentTargetDistance, originalTargetDistance);
+            currentTargetDistance = Mathf.Min(currentTargetDistance, maxTargetDistance);
         }
     }
 }
