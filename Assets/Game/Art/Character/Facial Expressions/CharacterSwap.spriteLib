@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Default
+      m_Hash: 753088835
+      m_Sprite: {fileID: 2265316918065436339, guid: f98b07e4f651f8642b22739d85d63790, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2265316918065436339, guid: f98b07e4f651f8642b22739d85d63790, type: 3}
+    - m_Name: Danger
+      m_Hash: 834233667
+      m_Sprite: {fileID: 2100500421647308849, guid: 5b03a7374e8816b45a3196f1fce8896a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2100500421647308849, guid: 5b03a7374e8816b45a3196f1fce8896a, type: 3}
+    - m_Name: Focus
+      m_Hash: 587294189
+      m_Sprite: {fileID: 3896360461340920158, guid: d140e18f5253f6d42be6dfc0d27ed48b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3896360461340920158, guid: d140e18f5253f6d42be6dfc0d27ed48b, type: 3}
+    - m_Name: Focus Blink
+      m_Hash: 457153900
+      m_Sprite: {fileID: -7604277260553308090, guid: 31e84dd73cd14344984b015a0761a57c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7604277260553308090, guid: 31e84dd73cd14344984b015a0761a57c, type: 3}
+    - m_Name: KOed
+      m_Hash: 79884414
+      m_Sprite: {fileID: -4194416615836296843, guid: 0dce39a4824d3d44da0e75310141e367, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4194416615836296843, guid: 0dce39a4824d3d44da0e75310141e367, type: 3}
+    - m_Name: Win
+      m_Hash: 143097238
+      m_Sprite: {fileID: 4709092650302034673, guid: 3c0e17a9a9c431145a4014ee9225d890, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4709092650302034673, guid: 3c0e17a9a9c431145a4014ee9225d890, type: 3}
+    - m_Name: Wobbling
+      m_Hash: 1068472576
+      m_Sprite: {fileID: 6802668294523030583, guid: 0fe362bdd5bfd3c4c91c911f736fa44c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6802668294523030583, guid: 0fe362bdd5bfd3c4c91c911f736fa44c, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638184055067963739
+  m_Version: 1
