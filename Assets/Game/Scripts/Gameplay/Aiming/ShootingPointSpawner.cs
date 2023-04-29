@@ -23,7 +23,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 		private float circleRadius;
 		private float currentScale;
 
-		private void Start()
+		private void Awake()
 		{
 			circleRadius = (spriteCircle.bounds.size.x) / 2f;
 			Spawn(targetDistance);
@@ -36,7 +36,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 
 		private void SpawnAtRandomLocation(float targetDistance)
 		{
-			var flip = (transform.parent.localScale.x < 0);
+			var flip = (transform.lossyScale.x < 0);
 			var randomAngle = Random.Range(minAngle - edgeMargin, maxAngle + edgeMargin);
 
 			var randomPointOnCircumference = new Vector2(
@@ -74,7 +74,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 			if (spawnedTargetZoneOne == null || spawnedTargetZoneTwo == null) return false;
 
 			// This flipping sucks but we have to do it ;(
-			var flip = (transform.parent.localScale.x < 0);
+			var flip = (transform.lossyScale.x < 0);
 			if (flip)
 			{
 				spawnedTargetZoneOne.transform.RotateAround(transform.position, Vector3.up, 180);

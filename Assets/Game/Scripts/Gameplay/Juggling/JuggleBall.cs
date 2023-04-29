@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace JugglingRaccoons.Gameplay
+namespace JugglingRaccoons.Gameplay.Juggling
 {
 	public class JuggleBall : MonoBehaviour
 	{

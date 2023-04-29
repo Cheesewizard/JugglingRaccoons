@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JugglingRaccoons.Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace JugglingRaccoons.Gameplay
+namespace JugglingRaccoons.Gameplay.Juggling
 {
 	public class JugglingBehaviour : MonoBehaviour
 	{
