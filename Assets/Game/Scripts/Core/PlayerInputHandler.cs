@@ -7,7 +7,9 @@ namespace JugglingRaccoons.Core
 	public class PlayerInputHandler : MonoBehaviour
 	{
 		public float BalanceValue { get; private set; } = 0.0f;
-		public bool ThrowAction { get; private set; } = false;
+		public bool ThrowActionPressed { get; private set; } = false;
+
+		public int PlayerId { get; private set; } = 0;
 
 		private PlayerInput playerInput;
 		private InputManager inputManager;
@@ -21,9 +23,10 @@ namespace JugglingRaccoons.Core
 			if (playerInput == null)
 			{
 				playerInput = GetComponent<PlayerInput>();
+				PlayerId = playerInput.playerIndex;
 				var gameplayActionMap = inputManager.Gameplay;
 				balanceAction = playerInput.actions[gameplayActionMap.Balance.name];
-				throwAction = playerInput.actions[gameplayActionMap.Balance.name];
+				throwAction = playerInput.actions[gameplayActionMap.Throw.name];
 			}
 
 			// Balance
@@ -37,7 +40,7 @@ namespace JugglingRaccoons.Core
 			// Throw
 			if (throwAction != null)
 			{
-				ThrowAction = throwAction.triggered;
+				ThrowActionPressed = throwAction.WasPressedThisFrame();
 			}
 		}
 	}

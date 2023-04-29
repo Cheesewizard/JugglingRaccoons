@@ -1,0 +1,73 @@
+using System;
+using JugglingRaccoons.Core;
+using UnityEngine;
+
+namespace JugglingRaccoons.Gameplay.Aiming
+{
+    public class ShootingInput : MonoBehaviour
+    {
+
+        [SerializeField]
+        private PlayerInputHandler playerInputHandler;
+
+        [SerializeField]
+        private float minTargetDistance = 5f;
+
+        [SerializeField]
+        private float targetReductionPerBall = 5f;
+
+        public event Action OnTargetHit;
+        public event Action OnTargetMissed;
+
+        private ShootingPointSpawner shootingPointSpawner;
+        private float originalTargetDistance;
+        private float currentTargetDistance;
+
+        private void Awake()
+        {
+            shootingPointSpawner = GetComponent<ShootingPointSpawner>();
+            if (shootingPointSpawner != null)
+            {
+                originalTargetDistance = shootingPointSpawner.targetDistance;
+                currentTargetDistance = originalTargetDistance;
+            }
+        }
+
+        private void Update()
+        {
+            if (playerInputHandler == null) return;
+
+            bool isWithinTarget = shootingPointSpawner.CheckIfBetweenPoints(shootingPointSpawner.arrowPointer.transform.rotation.z); // Change this to whatever target angle is supposed to be
+            if (playerInputHandler.ThrowActionPressed)
+            {
+                if (isWithinTarget)
+                {
+                    Debug.Log($"Player {playerInputHandler.PlayerId + 1} hit the target!");
+                    DecrementTargetDistance();
+                    OnTargetHit?.Invoke();
+                }
+                else
+                {
+                    Debug.Log($"Player {playerInputHandler.PlayerId + 1} missed the target!");
+                    //IncrementTargetDistance(); WRONG
+                    OnTargetMissed?.Invoke();
+                }
+
+                shootingPointSpawner.ClearTargetZone();
+                shootingPointSpawner.Spawn(currentTargetDistance);
+            }
+        }
+
+        private void DecrementTargetDistance()
+        {
+            currentTargetDistance -= targetReductionPerBall;
+            currentTargetDistance = Mathf.Max(currentTargetDistance, minTargetDistance);
+        }
+
+        private void IncrementTargetDistance()
+        {
+            currentTargetDistance += targetReductionPerBall;
+            currentTargetDistance = Mathf.Min(currentTargetDistance, originalTargetDistance);
+        }
+    }
+}

@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: playerInputHandler
       value: 
       objectReference: {fileID: 3816609806133360182}
+    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: playerInputHandler
+      value: 
+      objectReference: {fileID: 3816609806133360182}
     - target: {fileID: 8778679913795353151, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_RootOrder
       value: 0
