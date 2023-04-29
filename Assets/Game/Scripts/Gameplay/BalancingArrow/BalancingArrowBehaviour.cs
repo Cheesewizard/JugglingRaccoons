@@ -49,10 +49,10 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private bool goingRight = false;
 
 		public event Action<int> OnBalanceLost;
-		public event Action OnDangerZoneEnter;
-		public event Action OnDangerZoneExit;
-		public event Action OnFallingLeft;
-		public event Action OnFallingRight;
+		public event Action<int> OnDangerZoneEnter;
+		public event Action<int> OnDangerZoneExit;
+		public event Action<int> OnFallingLeft;
+		public event Action<int> OnFallingRight;
 
 		private void Start()
 		{
@@ -93,7 +93,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 				if (rotation <= 180f)
 				{
 					goingRight = false;
-					OnFallingLeft?.Invoke();
+					OnFallingLeft?.Invoke(playerInputHandler.PlayerId);
 				}
 			}
 			else
@@ -102,7 +102,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 				if (rotation >= 180f)
 				{
 					goingRight = true;
-					OnFallingRight?.Invoke();
+					OnFallingRight?.Invoke(playerInputHandler.PlayerId);
 				}
 			}
 
@@ -157,7 +157,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			inDangerZone = true;
 
 			Debug.Log("Entered DangerZone!");
-			OnDangerZoneEnter?.Invoke();
+			OnDangerZoneEnter?.Invoke(playerInputHandler.PlayerId);
 		}
 
 		private void ExitDangerZone()
@@ -166,7 +166,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			if (!inDangerZone) return;
 			inDangerZone = false;
 			Debug.Log("Exited DangerZone!");
-			OnDangerZoneExit?.Invoke();
+			OnDangerZoneExit?.Invoke(playerInputHandler.PlayerId);
 		}
 
 		[Button]
