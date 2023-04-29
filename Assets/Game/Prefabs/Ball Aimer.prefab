@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 5399479764467285231}
   - component: {fileID: 7874617269668266214}
   - component: {fileID: 1532505217824446611}
+  - component: {fileID: 5291240155230107909}
   m_Layer: 0
   m_Name: Ball Aimer
   m_TagString: Untagged
@@ -233,7 +234,7 @@ Transform:
   - {fileID: 1169579311931211767}
   - {fileID: 6294017180499284607}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7874617269668266214
 MonoBehaviour:
@@ -270,3 +271,16 @@ MonoBehaviour:
   maxAngle: -90
   targetDistance: 20
   edgeMargin: 10
+--- !u!114 &5291240155230107909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8093826480391609170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf53ce5dbd9ae146b87203cf3810177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputHandler: {fileID: 0}

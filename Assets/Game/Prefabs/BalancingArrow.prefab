@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7813963637981611819}
   - component: {fileID: 5890882370786847402}
+  - component: {fileID: 129545490468561033}
   m_Layer: 0
   m_Name: BalancingArrow
   m_TagString: Untagged
@@ -338,3 +339,18 @@ MonoBehaviour:
   gravityStrength: 0.4
   noiseBias: 0.04
   playerInputHandler: {fileID: 0}
+--- !u!114 &129545490468561033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183909437415783850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de7046be52899e4183d68cbdea9c0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingInput: {fileID: 0}
+  balancingArrowBehaviour: {fileID: 5890882370786847402}
+  missedShotUnbalanceValue: 0.1
