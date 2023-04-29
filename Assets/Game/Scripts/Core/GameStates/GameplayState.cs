@@ -14,10 +14,14 @@ namespace JugglingRaccoons.Core.GameStates
 
         private void OnEnable()
         {
-            OnGameplayStateEntered?.Invoke();
+            foreach (var player in PlayerManager.Instance.Players)
+            {
+                player.BalancingArrowBehaviour.OnBalanceLost += OnPlayerLostBalance;
+            }
 
-            // TODO: Get a callback for a player losing balance so we can activate the win state
             // TODO: Get a callback for when the game has finished and they want to go back to the main menu
+
+            OnGameplayStateEntered?.Invoke();
         }
 
         private void OnPlayerLostBalance(int playerIndex)
@@ -32,6 +36,11 @@ namespace JugglingRaccoons.Core.GameStates
 
         private void OnDisable()
         {
+            foreach (var player in PlayerManager.Instance.Players)
+            {
+                player.BalancingArrowBehaviour.OnBalanceLost -= OnPlayerLostBalance;
+            }
+
             OnGameplayStateExited?.Invoke();
         }
     }
