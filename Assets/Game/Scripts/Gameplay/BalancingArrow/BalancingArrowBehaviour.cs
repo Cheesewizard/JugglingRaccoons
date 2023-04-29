@@ -1,5 +1,6 @@
 using System;
 using JugglingRaccoons.Core;
+using JugglingRaccoons.Gameplay.Juggling;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -20,6 +21,9 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private float defaultUnbalanceAmount = 0.3f;
 
 		[SerializeField]
+		private float maxUnbalanceAmount = 0.6f;
+
+		[SerializeField]
 		private float gravityStrength = 0.1f;
 
 		[SerializeField]
@@ -29,16 +33,34 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private float rotationFollowSpeed = 10f;
 
 		[SerializeField]
+		private float unbalanceIncrementAmount = 0.1f;
+
+		[SerializeField]
 		private PlayerInputHandler playerInputHandler;
+
+		[SerializeField]
+		private LocalPlayerBehaviour localPlayerBehaviour;
 
 		private float currentRotation = 0.0f;
 		private bool hasLostBalance = false;
 		private bool inDangerZone = false;
-		private float previousRotation = 0.0f;
+		private float currentUnbalanceAmount = 0.0f;
+		private JugglingBehaviour jugglingBehaviour;
 
-		private event Action OnBalanceLost;
+		private event Action<int> OnBalanceLost;
 		private event Action OnDangerZoneEnter;
 		private event Action OnDangerZoneExit;
+
+		private void Start()
+		{
+			jugglingBehaviour = localPlayerBehaviour.JugglingBehaviour;
+			if (jugglingBehaviour)
+			{
+				jugglingBehaviour.OnBallCatched += IncreaseUnbalanceAmount;
+				jugglingBehaviour.OnBallThrown += DecreaseUnbalanceAmount;
+			}
+			currentUnbalanceAmount = defaultUnbalanceAmount;
+		}
 
 		private void Update()
 		{
@@ -46,7 +68,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 
 			currentRotation += -playerInputHandler.BalanceValue * inputStrength;
 
-			var randomForce = ((Mathf.PerlinNoise1D(Time.time) + noiseBias) * 2 - 1f) * defaultUnbalanceAmount;
+			var randomForce = ((Mathf.PerlinNoise1D(Time.time) + noiseBias) * 2 - 1f) * currentUnbalanceAmount;
 			ApplyRotationForce(randomForce);
 			ApplyGravity();
 		}
@@ -78,6 +100,15 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			}
 		}
 
+		private void OnDestroy()
+		{
+			if (jugglingBehaviour)
+			{
+				jugglingBehaviour.OnBallCatched -= IncreaseUnbalanceAmount;
+				jugglingBehaviour.OnBallThrown -= DecreaseUnbalanceAmount;
+			}
+		}
+
 		// This can be used for adding a rotation value (degrees)
 		public void ApplyRotationForce(float force) => currentRotation += force;
 
@@ -93,7 +124,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		{
 			hasLostBalance = true;
 			Debug.Log("Balance Lost!");
-			OnBalanceLost?.Invoke();
+			OnBalanceLost?.Invoke(playerInputHandler.PlayerId);
 		}
 
 		private void EnterDangerZone()
@@ -121,6 +152,18 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			hasLostBalance = false;
 			inDangerZone = false;
 			currentRotation = 0.0f;
+		}
+
+		private void IncreaseUnbalanceAmount(JuggleBall ball)
+		{
+			currentUnbalanceAmount += unbalanceIncrementAmount;
+			currentUnbalanceAmount = Mathf.Min(currentUnbalanceAmount, maxUnbalanceAmount);
+		}
+
+		private void DecreaseUnbalanceAmount(JuggleBall ball)
+		{
+			currentUnbalanceAmount -= unbalanceIncrementAmount;
+			currentUnbalanceAmount = Mathf.Max(currentUnbalanceAmount, defaultUnbalanceAmount);
 		}
 	}
 }
