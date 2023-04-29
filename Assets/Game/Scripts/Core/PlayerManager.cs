@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using JugglingRaccoons.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,14 @@ namespace JugglingRaccoons.Core
 
 		public PlayerManager()
 		{
+			SubscribeToInputManager();
+		}
+
+		private async void SubscribeToInputManager()
+		{
+			// Thanks Unity for making me do this
+			await UniTask.WaitUntil(() => PlayerInputManager.instance);
+			
 			PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
 			PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
 		}
