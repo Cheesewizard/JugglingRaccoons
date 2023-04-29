@@ -335,9 +335,10 @@ MonoBehaviour:
   angleLimit: 45
   dangerZoneAngle: 35
   inputStrength: 0.2
-  defaultUnbalanceAmount: 0.3
-  gravityStrength: 0.4
+  defaultUnbalanceAmount: 0.15
+  gravityStrength: 0.25
   noiseBias: 0.04
+  rotationFollowSpeed: 10
   playerInputHandler: {fileID: 0}
 --- !u!114 &129545490468561033
 MonoBehaviour:
@@ -353,4 +354,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingInput: {fileID: 0}
   balancingArrowBehaviour: {fileID: 5890882370786847402}
-  missedShotUnbalanceValue: 0.1
+  maxMissedShotUnbalanceValue: 20
+  minMissedShotUnbalanceValue: 10
+  missedShotAngleIncrement: 2
