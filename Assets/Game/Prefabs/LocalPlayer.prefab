@@ -211,8 +211,24 @@ PrefabInstance:
       propertyPath: playerInputHandler
       value: 
       objectReference: {fileID: 3816609806133360182}
+    - target: {fileID: 2740869952340258554, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740869952340258554, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.33
+      objectReference: {fileID: 0}
     - target: {fileID: 7724528894505632502, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934074101054139239, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_Color.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934074101054139239, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
@@ -270,6 +286,18 @@ PrefabInstance:
     - target: {fileID: 8842179642819146127, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_Name
       value: GamplayLogic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997179129736277474, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997179129736277474, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997179129736277474, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

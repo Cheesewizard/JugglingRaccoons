@@ -61,6 +61,8 @@ namespace JugglingRaccoons.Gameplay.Aiming
 			angle = Mathf.Atan2(spawnPosition.y - circleCenter.y, spawnPosition.x - circleCenter.x) * Mathf.Rad2Deg;
 			spawnedTargetZoneTwo = Instantiate(targetZonePrefab, spawnPosition,
 				Quaternion.Euler(0f, 0f, angle));
+			spawnedTargetZoneOne.transform.parent = transform;
+			spawnedTargetZoneTwo.transform.parent = transform;
 
 			if (flip)
 			{
