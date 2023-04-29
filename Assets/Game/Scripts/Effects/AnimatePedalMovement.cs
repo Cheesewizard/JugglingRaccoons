@@ -1,3 +1,6 @@
+using System;
+using JugglingRaccoons.Gameplay;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace JugglingRaccoons.Effects
@@ -26,6 +29,15 @@ namespace JugglingRaccoons.Effects
 		[SerializeField]
 		public bool isForwards;
 
+		[SerializeField, Required]
+		private LocalPlayerBehaviour localPlayerBehaviour;
+
+		private void OnEnable()
+		{
+			localPlayerBehaviour.BalancingArrowBehaviour.OnFallingLeft += OnFallingLeft;
+			localPlayerBehaviour.BalancingArrowBehaviour.OnFallingRight += OnFallingRight;
+		}
+
 		private void Update()
 		{
 			// They are reversed
@@ -41,6 +53,16 @@ namespace JugglingRaccoons.Effects
 
 			leftFoot.transform.position = leftPedal.transform.position;
 			rightFoot.transform.position = rightPedal.transform.position;
+		}
+
+		private void OnFallingLeft(int playerId)
+		{
+			isForwards = playerId != 0;
+		}
+
+		private void OnFallingRight(int playerId)
+		{
+			isForwards = playerId == 0;
 		}
 	}
 }
