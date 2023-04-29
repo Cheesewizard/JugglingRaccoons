@@ -71,8 +71,23 @@ namespace JugglingRaccoons.Gameplay.Aiming
 
 		public bool CheckIfBetweenPoints(float targetAngle)
 		{
+			// This flipping sucks but we have to do it ;(
+			var flip = (transform.parent.localScale.x < 0);
+			if (flip)
+			{
+				spawnedTargetZoneOne.transform.RotateAround(transform.position, Vector3.up, 180);
+				spawnedTargetZoneTwo.transform.RotateAround(transform.position, Vector3.up, 180);
+			}
+
 			var zoneOneAngle = spawnedTargetZoneOne.transform.rotation.z;
 			var zoneTwoAngle = spawnedTargetZoneTwo.transform.rotation.z;
+
+			// Flip it back to what it was before
+			if (flip)
+			{
+				spawnedTargetZoneOne.transform.RotateAround(transform.position, Vector3.up, 180);
+				spawnedTargetZoneTwo.transform.RotateAround(transform.position, Vector3.up, 180);
+			}
 
 			// Check positive range and negative
 			return targetAngle >= Mathf.Min(zoneOneAngle, zoneTwoAngle) &&
