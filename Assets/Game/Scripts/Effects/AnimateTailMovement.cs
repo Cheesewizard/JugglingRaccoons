@@ -9,7 +9,7 @@ namespace JugglingRaccoons.Effects
 
 		[SerializeField]
 		private float xOffset;
-		
+
 		[SerializeField]
 		private float amplitude = 1.0f;
 
@@ -23,16 +23,16 @@ namespace JugglingRaccoons.Effects
 
 		private void Start()
 		{
-			startPosition = targetSolver.transform.position;
+			startPosition = targetSolver.transform.localPosition;
 		}
 
 		private void Update()
 		{
 			// Sine wave up down
-			var newY = startPosition.y + amplitude * Mathf.Sin(Time.time * frequency * speed); 
-			
-			targetSolver.transform.position = new Vector3(transform.position.x + xOffset, newY,
-					targetSolver.transform.position.z);
+			var newY = startPosition.y + amplitude * Mathf.Sin(Time.time * frequency * speed);
+
+			targetSolver.transform.localPosition = new Vector3(transform.localPosition.x + xOffset, newY,
+					targetSolver.transform.localPosition.z);
 		}
 	}
 }
