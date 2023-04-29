@@ -71,6 +71,8 @@ namespace JugglingRaccoons.Gameplay.Aiming
 
 		public bool CheckIfBetweenPoints(float targetAngle)
 		{
+			if (spawnedTargetZoneOne == null || spawnedTargetZoneTwo == null) return false;
+
 			// This flipping sucks but we have to do it ;(
 			var flip = (transform.parent.localScale.x < 0);
 			if (flip)
