@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace JugglingRaccoons.Core.GameStates
@@ -21,6 +22,8 @@ namespace JugglingRaccoons.Core.GameStates
         
         private void OnEnable()
         {
+            EventSystem.current.SetSelectedGameObject(startButton.gameObject);
+
             OnMainMenuStateEntered?.Invoke();
         }
 
