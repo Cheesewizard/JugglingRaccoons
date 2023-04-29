@@ -269,7 +269,7 @@ MonoBehaviour:
   spriteCircle: {fileID: 215107168092191090}
   minAngle: 90
   maxAngle: -90
-  targetDistance: 20
+  targetDistance: 40
   edgeMargin: 10
 --- !u!114 &5291240155230107909
 MonoBehaviour:
