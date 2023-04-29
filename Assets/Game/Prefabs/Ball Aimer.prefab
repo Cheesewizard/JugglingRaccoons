@@ -284,3 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputHandler: {fileID: 0}
+  minTargetDistance: 20
+  maxTargetDistance: 40
+  targetReductionPerBall: 5
