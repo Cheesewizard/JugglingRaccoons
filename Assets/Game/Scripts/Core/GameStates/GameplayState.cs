@@ -1,6 +1,9 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace JugglingRaccoons.Core.GameStates
 {
@@ -10,22 +13,42 @@ namespace JugglingRaccoons.Core.GameStates
         private MainMenuState mainMenuState;
         [SerializeField]
         private PlayerInputManager playerInputManager;
+        [SerializeField]
+        private Button playAgainButton;
+        [SerializeField]
+        private Button menuButton;
         
         public static event Action OnGameplayStateEntered;
         public static event Action OnGameplayStateExited;
         public static event Action<int> OnPlayerWon;
-        
+
         private void OnEnable()
         {
-            foreach (var player in PlayerManager.Instance.Players)
-            {
-                player.BalancingArrowBehaviour.OnBalanceLost += OnPlayerLostBalance;
-            }
-
             // TODO: Get a callback for when the game has finished and they want to go back to the main menu
-
+            playerInputManager.onPlayerJoined += HandlePlayerJoined;
             playerInputManager.EnableJoining();
+            
+            EventSystem.current.SetSelectedGameObject(playAgainButton.gameObject);
+            
             OnGameplayStateEntered?.Invoke();
+        }
+
+        private void Start()
+        {
+            playAgainButton.onClick.AddListener(OnPlayAgainPressed);
+            menuButton.onClick.AddListener(OnMenuButtonPressed);
+        }
+
+        private void OnPlayAgainPressed()
+        {
+            //TODO: reset the game
+        }
+
+        private async void HandlePlayerJoined(PlayerInput player)
+        {
+            await UniTask.WaitForEndOfFrame();
+
+            PlayerManager.Instance.PlayersInputLookup[player].BalancingArrowBehaviour.OnBalanceLost += OnPlayerLostBalance;
         }
 
         private void OnPlayerLostBalance(int playerIndex)
@@ -33,7 +56,7 @@ namespace JugglingRaccoons.Core.GameStates
             OnPlayerWon?.Invoke(playerIndex == 0 ? 1 : 0);
         }
 
-        private void OnGameEnded()
+        private void OnMenuButtonPressed()
         {
             GameStateManager.Instance.ChangeGameState(mainMenuState);
         }

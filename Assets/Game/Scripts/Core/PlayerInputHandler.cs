@@ -1,3 +1,4 @@
+using JugglingRaccoons.Core.GameStates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,24 @@ namespace JugglingRaccoons.Core
 		private InputAction balanceAction;
 		private InputAction throwAction;
 
-		private void Awake() => inputManager = InputServiceLocator.GetPlayerInput();
+		private void Awake()
+		{
+			inputManager = InputServiceLocator.GetPlayerInput();
+			GameplayState.OnGameplayStateEntered += HandleEnteredGameplayState;
+			GameplayState.OnPlayerWon += HandlePlayerWon;
+		}
+
+		private void HandleEnteredGameplayState()
+		{
+			balanceAction.Enable();
+			throwAction.Enable();
+		}
+
+		private void HandlePlayerWon(int obj)
+		{
+			balanceAction.Disable();
+			throwAction.Disable();
+		}
 
 		private void Update()
 		{
