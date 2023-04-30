@@ -63,6 +63,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			{
 				jugglingBehaviour.OnBallCatched += IncreaseUnbalanceAmount;
 				jugglingBehaviour.OnBallThrown += DecreaseUnbalanceAmount;
+				jugglingBehaviour.OnMaxBallsReached += HandleMaxballsReached;
 			}
 
 			GameplayState.OnPlayerWon += HandlePlayerWon;
@@ -217,6 +218,11 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		{
 			currentRotation = 0f;
 			playerWon = true;
+		}
+		
+		private void HandleMaxballsReached()
+		{
+			currentRotation += playerInputHandler.PlayerId == 0 ? 100 : -100;
 		}
 	}
 }
