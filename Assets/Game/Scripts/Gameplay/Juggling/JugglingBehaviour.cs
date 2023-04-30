@@ -75,11 +75,6 @@ namespace JugglingRaccoons.Gameplay.Juggling
 			
 			for (int i = 0; i < startingBallsCount; i++)
 			{
-				if (i == maxBallsCount)
-				{
-					OnMaxBallsReached?.Invoke();
-				}
-				
 				if (i > maxBallsCount)
 				{
 					Debug.LogError("Too many ballz bro");
@@ -139,7 +134,7 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		{
 			if (balls.Count == maxBallsCount)
 			{
-				Debug.LogError("Cannot add ball! Reached the max");
+				OnMaxBallsReached?.Invoke();
 				return;
 			}
 
