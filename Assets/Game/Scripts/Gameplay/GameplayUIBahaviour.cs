@@ -15,7 +15,11 @@ namespace JugglingRaccoons.Gameplay
         [SerializeField]
         private Button menuButton;
         [SerializeField]
+        private GameObject playerWinsBanner;
+        [SerializeField]
         private TextMeshProUGUI playerWinText;
+        [SerializeField]
+        private GameObject playerJoinBanner;
         [SerializeField]
         private TextMeshProUGUI playerJoinText;
 
@@ -31,12 +35,15 @@ namespace JugglingRaccoons.Gameplay
             playerWinText.gameObject.SetActive(false);
             playAgainButton.gameObject.SetActive(false);
             menuButton.gameObject.SetActive(false);
+            playerWinsBanner.gameObject.SetActive(false);
+            playerJoinBanner.gameObject.SetActive(PlayerManager.Instance.Players.Count < 2);
             playerJoinText.gameObject.SetActive(PlayerManager.Instance.Players.Count < 2);
         }
         
         private void HandlePlayerJoined(LocalPlayerBehaviour player)
         {
             playerJoinText.gameObject.SetActive(PlayerManager.Instance.Players.Count < 2);
+            playerJoinBanner.gameObject.SetActive(PlayerManager.Instance.Players.Count < 2);
         }
 
         private void OnEnable()
@@ -50,6 +57,7 @@ namespace JugglingRaccoons.Gameplay
             playAgainButton.gameObject.SetActive(true);
             menuButton.gameObject.SetActive(true);
             playerWinText.gameObject.SetActive(true);
+            playerWinsBanner.gameObject.SetActive(true);
         }
 
         private void OnDisable()
