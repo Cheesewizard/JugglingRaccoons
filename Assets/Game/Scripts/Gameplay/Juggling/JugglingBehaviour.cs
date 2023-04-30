@@ -42,7 +42,8 @@ namespace JugglingRaccoons.Gameplay.Juggling
 
 		public float TotalJuggleTime => JuggleTime + HandPassTime;
 
-		private List<JuggleBall> balls = new ();
+		[HideInInspector]
+		public List<JuggleBall> balls = new ();
 		private int prevBallsCount;
 		private int delayIndex;
 		private bool isNewJuggle;
@@ -51,6 +52,7 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		public event Action<JugglingBehaviour> OnReadyToReceiveBall;
 		public event Action<JuggleBall> OnBallThrown;
 		public event Action<JuggleBall> OnBallCatched;
+		public event Action OnMaxBallsReached;
 		
 		private void Awake()
 		{
@@ -73,6 +75,11 @@ namespace JugglingRaccoons.Gameplay.Juggling
 			
 			for (int i = 0; i < startingBallsCount; i++)
 			{
+				if (i == maxBallsCount)
+				{
+					OnMaxBallsReached?.Invoke();
+				}
+				
 				if (i > maxBallsCount)
 				{
 					Debug.LogError("Too many ballz bro");
