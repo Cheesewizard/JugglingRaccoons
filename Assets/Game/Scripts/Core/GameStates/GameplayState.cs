@@ -29,7 +29,8 @@ namespace JugglingRaccoons.Core.GameStates
             playerInputManager.EnableJoining();
             
             EventSystem.current.SetSelectedGameObject(playAgainButton.gameObject);
-            
+
+            playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersWhenButtonIsPressed;
             OnGameplayStateEntered?.Invoke();
         }
 
@@ -37,6 +38,11 @@ namespace JugglingRaccoons.Core.GameStates
         {
             playAgainButton.onClick.AddListener(OnPlayAgainPressed);
             menuButton.onClick.AddListener(OnMenuButtonPressed);
+
+            foreach (var player in PlayerManager.Instance.Players)
+            {
+                player.BalancingArrowBehaviour.OnBalanceLost += OnPlayerLostBalance;
+            }
         }
 
         private void OnPlayAgainPressed()

@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "JoinPlayerOne",
+                    "type": "Button",
+                    "id": "7551e9ed-cdbd-4b1f-a78d-aff32e3465e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -456,6 +465,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "UI_Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34291e80-7016-4f48-960c-f2fc6ee1a8be",
+                    "path": "*/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinPlayerOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
