@@ -134,8 +134,8 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		{
 			if (balls.Count == maxBallsCount)
 			{
+				Debug.LogError("MAX BALLS");
 				OnMaxBallsReached?.Invoke();
-				return;
 			}
 
 			readyToReceiveBall = false;

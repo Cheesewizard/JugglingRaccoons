@@ -116,7 +116,7 @@ Transform:
   - {fileID: 8547603200721009784}
   - {fileID: 2805226680011553547}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9221980599669368622
 MonoBehaviour:
@@ -130,17 +130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6641003026fa42e98583193ff3dddc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localPlayer: {fileID: 0}
   ballPrefab: {fileID: 3564760142285456862, guid: 26e2429bfbed2e344ab378926f24f151, type: 3}
   <StartingHand>k__BackingField: {fileID: 8547603200721009784}
   <PassingHand>k__BackingField: {fileID: 2805226680011553547}
   startingBallsCount: 4
-  maxBallsCount: 9
+  maxBallsCount: 7
   <JuggleHeight>k__BackingField: 2.2
   <JuggleTime>k__BackingField: 1.25
   <HandPassHeight>k__BackingField: 0.6
   <HandPassTime>k__BackingField: 0.6
   <ThrowTime>k__BackingField: 2.2
   <ThrowHeight>k__BackingField: 4.5
+  balls: []
 --- !u!1 &4290080759606738287
 GameObject:
   m_ObjectHideFlags: 0
