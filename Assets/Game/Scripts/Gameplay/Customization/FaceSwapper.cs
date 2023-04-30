@@ -8,7 +8,7 @@ namespace JugglingRaccoons.Gameplay.Customization
 	public class FaceSwapper : MonoBehaviour
 	{
 		[SerializeField]
-		public SpriteResolver spriteResolver;
+		private SpriteResolver spriteResolver;
 
 		private const string CATEGORY = "Head";
 
