@@ -35,6 +35,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
 		private void Initialize()
 		{
 			ClearTargetZone();
+			Spawn(targetDistance);
 		}
 		
 		public void Spawn(float distance)
