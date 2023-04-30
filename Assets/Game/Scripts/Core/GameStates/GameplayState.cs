@@ -29,7 +29,8 @@ namespace JugglingRaccoons.Core.GameStates
             playerInputManager.EnableJoining();
             
             EventSystem.current.SetSelectedGameObject(playAgainButton.gameObject);
-            
+
+            playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersWhenButtonIsPressed;
             OnGameplayStateEntered?.Invoke();
         }
 

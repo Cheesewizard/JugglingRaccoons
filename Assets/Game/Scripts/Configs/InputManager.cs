@@ -71,6 +71,15 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JoinPlayerOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""7551e9ed-cdbd-4b1f-a78d-aff32e3465e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -480,6 +489,17 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""action"": ""UI_Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34291e80-7016-4f48-960c-f2fc6ee1a8be"",
+                    ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JoinPlayerOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -521,6 +541,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         m_Gameplay_UI_Navigate = m_Gameplay.FindAction("UI_Navigate", throwIfNotFound: true);
         m_Gameplay_UI_Submit = m_Gameplay.FindAction("UI_Submit", throwIfNotFound: true);
         m_Gameplay_UI_Cancel = m_Gameplay.FindAction("UI_Cancel", throwIfNotFound: true);
+        m_Gameplay_JoinPlayerOne = m_Gameplay.FindAction("JoinPlayerOne", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -587,6 +608,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_UI_Navigate;
     private readonly InputAction m_Gameplay_UI_Submit;
     private readonly InputAction m_Gameplay_UI_Cancel;
+    private readonly InputAction m_Gameplay_JoinPlayerOne;
     public struct GameplayActions
     {
         private @InputManager m_Wrapper;
@@ -596,6 +618,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         public InputAction @UI_Navigate => m_Wrapper.m_Gameplay_UI_Navigate;
         public InputAction @UI_Submit => m_Wrapper.m_Gameplay_UI_Submit;
         public InputAction @UI_Cancel => m_Wrapper.m_Gameplay_UI_Cancel;
+        public InputAction @JoinPlayerOne => m_Wrapper.m_Gameplay_JoinPlayerOne;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -620,6 +643,9 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @UI_Cancel.started += instance.OnUI_Cancel;
             @UI_Cancel.performed += instance.OnUI_Cancel;
             @UI_Cancel.canceled += instance.OnUI_Cancel;
+            @JoinPlayerOne.started += instance.OnJoinPlayerOne;
+            @JoinPlayerOne.performed += instance.OnJoinPlayerOne;
+            @JoinPlayerOne.canceled += instance.OnJoinPlayerOne;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -639,6 +665,9 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @UI_Cancel.started -= instance.OnUI_Cancel;
             @UI_Cancel.performed -= instance.OnUI_Cancel;
             @UI_Cancel.canceled -= instance.OnUI_Cancel;
+            @JoinPlayerOne.started -= instance.OnJoinPlayerOne;
+            @JoinPlayerOne.performed -= instance.OnJoinPlayerOne;
+            @JoinPlayerOne.canceled -= instance.OnJoinPlayerOne;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -681,5 +710,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         void OnUI_Navigate(InputAction.CallbackContext context);
         void OnUI_Submit(InputAction.CallbackContext context);
         void OnUI_Cancel(InputAction.CallbackContext context);
+        void OnJoinPlayerOne(InputAction.CallbackContext context);
     }
 }

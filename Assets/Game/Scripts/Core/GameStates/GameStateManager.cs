@@ -10,7 +10,7 @@ namespace JugglingRaccoons.Core.GameStates
         [SerializeField]
         private AbstractGameState startingAbstractGameState;
 
-        private AbstractGameState _currentAbstractGameState;
+        public AbstractGameState CurrentState { get; private set; }
         private List<AbstractGameState> gameStates = new();
 
         private void Awake()
@@ -37,20 +37,20 @@ namespace JugglingRaccoons.Core.GameStates
                     childObject.SetActive(false);
                 }
             }
-            _currentAbstractGameState = startingAbstractGameState;
+            CurrentState = startingAbstractGameState;
         }
 
         private void Start()
         {
             // Activate the currentState
-            _currentAbstractGameState.gameObject.SetActive(true);
+            CurrentState.gameObject.SetActive(true);
         }
 
         public void ChangeGameState(AbstractGameState state)
         {
-            _currentAbstractGameState.gameObject.SetActive(false);
+            CurrentState.gameObject.SetActive(false);
             state.gameObject.SetActive(true);
-            _currentAbstractGameState = state;
+            CurrentState = state;
         }
     }
 }

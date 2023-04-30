@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -15,8 +16,11 @@ namespace JugglingRaccoons.Core
 
 		public List<LocalPlayerBehaviour> Players { get; private set; } = new();
 		public Dictionary<PlayerInput, LocalPlayerBehaviour> PlayersInputLookup { get; } = new();
-		
+
 		private List<Transform> spawnPoints = new();
+
+		public event Action<LocalPlayerBehaviour> PlayerJoined;
+		public event Action<LocalPlayerBehaviour> PlayerLeft;
 
 		public PlayerManager()
 		{
@@ -46,7 +50,7 @@ namespace JugglingRaccoons.Core
 			return opponent != null;
 		}
 
-		public void OnPlayerJoined(PlayerInput playerInput)
+		private void OnPlayerJoined(PlayerInput playerInput)
 		{
 			// Set the player at it's spawn position
 			playerInput.transform.position = spawnPoints[playerInput.playerIndex].transform.position;
@@ -63,6 +67,8 @@ namespace JugglingRaccoons.Core
 					var scale = localPlayer.transform.localScale;
 					localPlayer.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
 				}
+				
+				PlayerJoined?.Invoke(localPlayer);
 			}
 		}
 
@@ -71,6 +77,7 @@ namespace JugglingRaccoons.Core
 			var player = PlayersInputLookup[playerInput];
 			Players.Remove(player);
 			PlayersInputLookup.Remove(playerInput);
+			PlayerLeft?.Invoke(player);
 		}
 	}
 }
