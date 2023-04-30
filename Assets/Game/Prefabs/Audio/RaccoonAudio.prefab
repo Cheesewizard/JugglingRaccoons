@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5199647789536242277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5199284996863021964}
+  - component: {fileID: 580096348090703273}
+  m_Layer: 0
+  m_Name: RaccoonAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5199284996863021964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199647789536242277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &580096348090703273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199647789536242277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54717c9589b430c4781ce4dc79280472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localPlayerBehaviour: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 52da0a3be8a6ed44ca4fc4eb8b98cc6a, type: 3}
+  throwClip: {fileID: 8300000, guid: e1df1645171e820438f337578db4272a, type: 3}
+  wheelSqueak: {fileID: 8300000, guid: 226f072efbd1fc840ba5b36a5d2d28fa, type: 3}
+  throwFailed: {fileID: 8300000, guid: 8a014003951b4a848b4a3545aaf60f58, type: 3}
+  targetHitClip: {fileID: 8300000, guid: d4a03be542bcc8249bba2917eafd92cf, type: 3}
