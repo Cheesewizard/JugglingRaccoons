@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JugglingRaccoons.Core;
+using JugglingRaccoons.Core.GameStates;
 using UnityEngine;
 
 namespace JugglingRaccoons.Gameplay.Juggling
@@ -53,6 +54,23 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		
 		private void Awake()
 		{
+			if (localPlayer)
+			{
+				localPlayer.ShootingInput.OnTargetHit += ThrowBallAtOpponent;
+			}
+
+			Initialize();
+			GameplayState.OnGameplayStateEntered += Initialize;
+		}
+
+		private void Initialize()
+		{
+			foreach (var ball in balls)
+			{
+				Destroy(ball.gameObject);
+			}
+			balls.Clear();
+			
 			for (int i = 0; i < startingBallsCount; i++)
 			{
 				if (i > maxBallsCount)
@@ -71,11 +89,8 @@ namespace JugglingRaccoons.Gameplay.Juggling
 				ball.OnNewJuggle += HandleNewJuggle;
 			}
 
-			if (localPlayer)
-			{
-				localPlayer.ShootingInput.OnTargetHit += ThrowBallAtOpponent;
-			}
-
+			delayIndex = 0;
+			isNewJuggle = false;
 			prevBallsCount = startingBallsCount;
 			readyToReceiveBall = true;
 		}

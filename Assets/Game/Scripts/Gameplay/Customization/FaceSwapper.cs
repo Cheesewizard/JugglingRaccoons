@@ -1,4 +1,5 @@
 using System;
+using JugglingRaccoons.Core.GameStates;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
@@ -11,6 +12,17 @@ namespace JugglingRaccoons.Gameplay.Customization
 		private SpriteResolver spriteResolver;
 
 		private const string CATEGORY = "Head";
+
+		private void Awake()
+		{
+			Initialize();
+			GameplayState.OnGameplayStateEntered += Initialize;
+		}
+
+		private void Initialize()
+		{
+			UpdateFace(FaceStates.Default);
+		}
 
 		[Button]
 		public void UpdateFace(FaceStates faceState)
