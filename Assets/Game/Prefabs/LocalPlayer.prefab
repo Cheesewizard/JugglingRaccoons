@@ -209,6 +209,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: maxTargetDistance
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: playerInputHandler
       value: 
       objectReference: {fileID: 3816609806133360182}
@@ -233,8 +237,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: inputStrength
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: dangerZoneAngle
-      value: 20
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: gravityStrength
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: maxUnbalanceAmount
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: playerInputHandler
@@ -244,6 +260,10 @@ PrefabInstance:
       propertyPath: localPlayerBehaviour
       value: 
       objectReference: {fileID: 3395973409818313951}
+    - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: defaultUnbalanceAmount
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8778679913795353151, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -444,11 +464,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5146296319263830923, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.24241385
+      value: 0.24241376
       objectReference: {fileID: 0}
     - target: {fileID: 5146296319263830923, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.970173
+      value: -0.97017294
       objectReference: {fileID: 0}
     - target: {fileID: 5210582751658863426, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_IsActive
