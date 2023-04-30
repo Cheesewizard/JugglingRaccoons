@@ -36,8 +36,9 @@ namespace JugglingRaccoons
             musicSource.Play();
         }
 
-        public void PlayClip(AudioClip clip, float volume = 1f)
+        public void PlayClip(AudioClip clip, bool useRandomPitch = false, float volume = 1f)
         {
+            sfxSource.pitch = useRandomPitch ? Random.Range(0.8f, 1.2f) : 1f;
             sfxSource.PlayOneShot(clip, volume);
         }
     }
