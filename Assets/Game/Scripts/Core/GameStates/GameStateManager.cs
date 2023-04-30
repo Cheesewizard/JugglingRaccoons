@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace JugglingRaccoons.Core.GameStates
 {
@@ -10,7 +11,10 @@ namespace JugglingRaccoons.Core.GameStates
         [SerializeField]
         private AbstractGameState startingAbstractGameState;
 
-        private AbstractGameState _currentAbstractGameState;
+        [SerializeField]
+        private string artSceneName;
+
+        public AbstractGameState CurrentState { get; private set; }
         private List<AbstractGameState> gameStates = new();
 
         private void Awake()
@@ -26,6 +30,12 @@ namespace JugglingRaccoons.Core.GameStates
 
             DontDestroyOnLoad(this);
 
+            var scene = SceneManager.GetSceneByName(artSceneName);
+            if (!scene.IsValid())
+            {
+                SceneManager.LoadScene(artSceneName, LoadSceneMode.Additive);
+            }
+            
             // Get all the states and disable them by default
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -37,20 +47,21 @@ namespace JugglingRaccoons.Core.GameStates
                     childObject.SetActive(false);
                 }
             }
-            _currentAbstractGameState = startingAbstractGameState;
+            
+            CurrentState = startingAbstractGameState;
         }
 
         private void Start()
         {
             // Activate the currentState
-            _currentAbstractGameState.gameObject.SetActive(true);
+            CurrentState.gameObject.SetActive(true);
         }
 
         public void ChangeGameState(AbstractGameState state)
         {
-            _currentAbstractGameState.gameObject.SetActive(false);
+            CurrentState.gameObject.SetActive(false);
             state.gameObject.SetActive(true);
-            _currentAbstractGameState = state;
+            CurrentState = state;
         }
     }
 }

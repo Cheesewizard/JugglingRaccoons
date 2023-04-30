@@ -1,7 +1,9 @@
 using System;
+using JugglingRaccoons.Core;
 using JugglingRaccoons.Core.GameStates;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace JugglingRaccoons.Gameplay
@@ -14,11 +16,14 @@ namespace JugglingRaccoons.Gameplay
         private Button menuButton;
         [SerializeField]
         private TextMeshProUGUI playerWinText;
+        [SerializeField]
+        private TextMeshProUGUI playerJoinText;
 
         private void Awake()
         {
             Initialize();
             GameplayState.OnGameplayStateEntered += Initialize;
+            PlayerManager.Instance.PlayerJoined += HandlePlayerJoined;
         }
 
         private void Initialize()
@@ -26,6 +31,12 @@ namespace JugglingRaccoons.Gameplay
             playerWinText.gameObject.SetActive(false);
             playAgainButton.gameObject.SetActive(false);
             menuButton.gameObject.SetActive(false);
+            playerJoinText.gameObject.SetActive(PlayerManager.Instance.Players.Count < 2);
+        }
+        
+        private void HandlePlayerJoined(LocalPlayerBehaviour player)
+        {
+            playerJoinText.gameObject.SetActive(PlayerManager.Instance.Players.Count < 2);
         }
 
         private void OnEnable()

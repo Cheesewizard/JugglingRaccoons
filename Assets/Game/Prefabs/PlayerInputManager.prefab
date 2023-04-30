@@ -47,7 +47,7 @@ MonoBehaviour:
   m_NotificationBehavior: 3
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -55,17 +55,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 31644846-f98a-46b0-89ef-46d02f6b3927
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings: []
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 6105b3c9-14dd-4777-83c0-58d39121504c
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 546673359744633720, guid: d8f1bd690b7f15b4babdcfd09695f05a, type: 3}
   m_PlayerPrefab: {fileID: 1578126155497583302, guid: 78459f37df9ee83408b8630ae8d95490, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0

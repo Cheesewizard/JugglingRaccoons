@@ -20,20 +20,20 @@ namespace JugglingRaccoons.Core
 		private void Awake()
 		{
 			inputManager = InputServiceLocator.GetPlayerInput();
-			GameplayState.OnGameplayStateEntered += HandleEnteredGameplayState;
-			GameplayState.OnPlayerWon += HandlePlayerWon;
+			GameplayState.OnGameplayStateEntered += EnableGameplayActions;
+			GameplayState.OnPlayerWon += _ => DisableGameplayActions();
 		}
 
-		private void HandleEnteredGameplayState()
-		{
-			balanceAction.Enable();
-			throwAction.Enable();
-		}
-
-		private void HandlePlayerWon(int obj)
+		private void DisableGameplayActions()
 		{
 			balanceAction.Disable();
 			throwAction.Disable();
+		}
+		
+		private void EnableGameplayActions()
+		{
+			balanceAction.Enable();
+			throwAction.Enable();
 		}
 
 		private void Update()
@@ -45,6 +45,11 @@ namespace JugglingRaccoons.Core
 				var gameplayActionMap = inputManager.Gameplay;
 				balanceAction = playerInput.actions[gameplayActionMap.Balance.name];
 				throwAction = playerInput.actions[gameplayActionMap.Throw.name];
+
+				if (GameStateManager.Instance.CurrentState is not GameplayState)
+				{
+					DisableGameplayActions();
+				}
 			}
 
 			// Balance
