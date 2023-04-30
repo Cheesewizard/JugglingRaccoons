@@ -48,6 +48,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		private float currentUnbalanceAmount = 0.0f;
 		private JugglingBehaviour jugglingBehaviour;
 		private bool goingRight = false;
+		private bool playerWon = false;
 
 		public event Action<int> OnBalanceLost;
 		public event Action<int> OnDangerZoneEnter;
@@ -64,6 +65,8 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 				jugglingBehaviour.OnBallThrown += DecreaseUnbalanceAmount;
 			}
 
+			GameplayState.OnPlayerWon += HandlePlayerWon;
+
 			Initialize();
 			GameplayState.OnGameplayStateEntered += Initialize;
 		}
@@ -74,6 +77,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 			hasLostBalance = false;
 			inDangerZone = false;
 			goingRight = false;
+			playerWon = false;
 			transform.rotation = Quaternion.identity;
 			currentUnbalanceAmount = defaultUnbalanceAmount;
 		}
@@ -84,9 +88,13 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 
 			currentRotation += -playerInputHandler.BalanceValue * inputStrength;
 
-			var randomForce = ((Mathf.PerlinNoise1D(Time.time + playerInputHandler.PlayerId * 100f) + noiseBias) * 2 - 1f) * currentUnbalanceAmount;
-			ApplyRotationForce(randomForce);
-			ApplyGravity();
+			// Only apply the forces if the player hasn't won yet
+			if (!playerWon)
+			{
+				var randomForce = ((Mathf.PerlinNoise1D(Time.time + playerInputHandler.PlayerId * 100f) + noiseBias) * 2 - 1f) * currentUnbalanceAmount;
+				ApplyRotationForce(randomForce);
+				ApplyGravity();
+			}
 		}
 
 		private void LateUpdate()
@@ -143,6 +151,8 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 				jugglingBehaviour.OnBallCatched -= IncreaseUnbalanceAmount;
 				jugglingBehaviour.OnBallThrown -= DecreaseUnbalanceAmount;
 			}
+			
+			GameplayState.OnPlayerWon -= HandlePlayerWon;
 		}
 
 		// This can be used for adding a rotation value (degrees)
@@ -187,6 +197,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		{
 			hasLostBalance = false;
 			inDangerZone = false;
+			playerWon = false;
 			currentRotation = 0.0f;
 		}
 
@@ -200,6 +211,12 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		{
 			currentUnbalanceAmount -= unbalanceIncrementAmount;
 			currentUnbalanceAmount = Mathf.Max(currentUnbalanceAmount, defaultUnbalanceAmount);
+		}
+
+		private void HandlePlayerWon(int playerId)
+		{
+			currentRotation = 0f;
+			playerWon = true;
 		}
 	}
 }
