@@ -1,3 +1,4 @@
+using JugglingRaccoons.Core.GameStates;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -27,8 +28,15 @@ namespace JugglingRaccoons.Gameplay.Aiming
 		{
 			circleRadius = (spriteCircle.bounds.size.x) / 2f;
 			Spawn(targetDistance);
+
+			GameplayState.OnGameplayStateEntered += Initialize;
 		}
 
+		private void Initialize()
+		{
+			ClearTargetZone();
+		}
+		
 		public void Spawn(float distance)
 		{
 			SpawnAtRandomLocation(distance);

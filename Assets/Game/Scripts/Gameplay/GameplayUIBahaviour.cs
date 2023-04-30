@@ -17,6 +17,12 @@ namespace JugglingRaccoons.Gameplay
 
         private void Awake()
         {
+            Initialize();
+            GameplayState.OnGameplayStateEntered += Initialize;
+        }
+
+        private void Initialize()
+        {
             playerWinText.gameObject.SetActive(false);
             playAgainButton.gameObject.SetActive(false);
             menuButton.gameObject.SetActive(false);

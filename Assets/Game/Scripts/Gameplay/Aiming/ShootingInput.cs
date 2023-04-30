@@ -1,5 +1,6 @@
 using System;
 using JugglingRaccoons.Core;
+using JugglingRaccoons.Core.GameStates;
 using UnityEngine;
 
 namespace JugglingRaccoons.Gameplay.Aiming
@@ -28,10 +29,13 @@ namespace JugglingRaccoons.Gameplay.Aiming
         private void Awake()
         {
             shootingPointSpawner = GetComponent<ShootingPointSpawner>();
-            if (shootingPointSpawner != null)
-            {
-                currentTargetDistance = maxTargetDistance;
-            }
+            Initialize();
+            GameplayState.OnGameplayStateEntered += Initialize;
+        }
+
+        private void Initialize()
+        {
+            currentTargetDistance = maxTargetDistance;
         }
 
         private void Update()

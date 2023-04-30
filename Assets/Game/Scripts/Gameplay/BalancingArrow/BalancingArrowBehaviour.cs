@@ -1,5 +1,6 @@
 using System;
 using JugglingRaccoons.Core;
+using JugglingRaccoons.Core.GameStates;
 using JugglingRaccoons.Gameplay.Juggling;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -62,9 +63,21 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 				jugglingBehaviour.OnBallCatched += IncreaseUnbalanceAmount;
 				jugglingBehaviour.OnBallThrown += DecreaseUnbalanceAmount;
 			}
-			currentUnbalanceAmount = defaultUnbalanceAmount;
+
+			Initialize();
+			GameplayState.OnGameplayStateEntered += Initialize;
 		}
 
+		public void Initialize()
+		{
+			currentRotation = 0.0f;
+			hasLostBalance = false;
+			inDangerZone = false;
+			goingRight = false;
+			transform.rotation = Quaternion.identity;
+			currentUnbalanceAmount = defaultUnbalanceAmount;
+		}
+		
 		private void Update()
 		{
 			if (hasLostBalance) return;

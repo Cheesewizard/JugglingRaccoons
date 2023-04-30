@@ -41,7 +41,8 @@ namespace JugglingRaccoons.Core.GameStates
 
         private void OnPlayAgainPressed()
         {
-            //TODO: reset the game
+            OnDisable();
+            OnEnable();
         }
 
         private async void HandlePlayerJoined(PlayerInput player)
@@ -63,11 +64,6 @@ namespace JugglingRaccoons.Core.GameStates
 
         private void OnDisable()
         {
-            foreach (var player in PlayerManager.Instance.Players)
-            {
-                player.BalancingArrowBehaviour.OnBalanceLost -= OnPlayerLostBalance;
-            }
-
             OnGameplayStateExited?.Invoke();
         }
     }
