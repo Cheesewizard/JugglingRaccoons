@@ -14,9 +14,8 @@ namespace JugglingRaccoons.Core
 		private static PlayerManager instance;
 
 		public List<LocalPlayerBehaviour> Players { get; private set; } = new();
-
-
-		private Dictionary<PlayerInput, LocalPlayerBehaviour> playersInputLookup  = new();
+		public Dictionary<PlayerInput, LocalPlayerBehaviour> PlayersInputLookup { get; } = new();
+		
 		private List<Transform> spawnPoints = new();
 
 		public PlayerManager()
@@ -56,7 +55,7 @@ namespace JugglingRaccoons.Core
 			if (localPlayer != null)
 			{
 				Players.Add(localPlayer);
-				playersInputLookup.Add(playerInput, localPlayer);
+				PlayersInputLookup.Add(playerInput, localPlayer);
 
 				// Flip the X scale for the ball aimer for the second player
 				if (playerInput.playerIndex == 1)
@@ -69,9 +68,9 @@ namespace JugglingRaccoons.Core
 
 		private void OnPlayerLeft(PlayerInput playerInput)
 		{
-			var player = playersInputLookup[playerInput];
+			var player = PlayersInputLookup[playerInput];
 			Players.Remove(player);
-			playersInputLookup.Remove(playerInput);
+			PlayersInputLookup.Remove(playerInput);
 		}
 	}
 }
