@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: inputStrength
-      value: 0.25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: dangerZoneAngle

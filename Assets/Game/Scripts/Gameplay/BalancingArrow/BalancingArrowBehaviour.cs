@@ -87,7 +87,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 		{
 			if (hasLostBalance) return;
 
-			currentRotation += -playerInputHandler.BalanceValue * inputStrength;
+			currentRotation += -playerInputHandler.BalanceValue * inputStrength * Time.deltaTime;
 
 			// Only apply the forces if the player hasn't won yet
 			if (!playerWon)
