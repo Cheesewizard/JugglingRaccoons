@@ -41,7 +41,7 @@ namespace JugglingRaccoons.Core.GameStates
 
             foreach (var player in PlayerManager.Instance.Players)
             {
-                player.BalancingArrowBehaviour.OnBalanceLost += OnPlayerLostBalance;
+                player.BalancingBehaviour.OnBalanceLost += OnPlayerLostBalance;
             }
         }
 
@@ -55,7 +55,7 @@ namespace JugglingRaccoons.Core.GameStates
         {
             await UniTask.WaitForEndOfFrame();
 
-            PlayerManager.Instance.PlayersInputLookup[player].BalancingArrowBehaviour.OnBalanceLost += OnPlayerLostBalance;
+            PlayerManager.Instance.PlayersInputLookup[player].BalancingBehaviour.OnBalanceLost += OnPlayerLostBalance;
         }
 
         private void OnPlayerLostBalance(int playerIndex)

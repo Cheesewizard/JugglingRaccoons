@@ -95,7 +95,7 @@ MonoBehaviour:
   BallAimerPivotTransform: {fileID: 1044510932322516849}
   <JugglingBehaviour>k__BackingField: {fileID: 1318985682827474097}
   <ShootingBehaviour>k__BackingField: {fileID: 3732316416746994116}
-  <BalancingArrowBehaviour>k__BackingField: {fileID: 7218953736516847782}
+  <BalancingBehaviour>k__BackingField: {fileID: 3097775362353584857}
   disableInAwake: 0
 --- !u!95 &8935127275512100187
 Animator:
@@ -236,6 +236,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.33
       objectReference: {fileID: 0}
+    - target: {fileID: 4377307707119241229, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: playerInputHandler
+      value: 
+      objectReference: {fileID: 3816609806133360182}
+    - target: {fileID: 4377307707119241229, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: localPlayerBehaviour
+      value: 
+      objectReference: {fileID: 3395973409818313951}
     - target: {fileID: 7724528894505632502, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -361,6 +369,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6641003026fa42e98583193ff3dddc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3097775362353584857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4377307707119241229, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37de2c84b981834fb35aea3ea787641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3732316416746994116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
@@ -377,17 +396,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5754589360798103539, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
   m_PrefabInstance: {fileID: 1604073585618899668}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7218953736516847782 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
-  m_PrefabInstance: {fileID: 1604073585618899668}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c37de2c84b981834fb35aea3ea787641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7851863106132779867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8842179642819146127, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
@@ -476,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5146296319263830923, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.24241385
+      value: 0.24241371
       objectReference: {fileID: 0}
     - target: {fileID: 5146296319263830923, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_LocalRotation.z

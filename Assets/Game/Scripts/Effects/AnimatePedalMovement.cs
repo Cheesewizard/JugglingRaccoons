@@ -34,8 +34,8 @@ namespace JugglingRaccoons.Effects
 
 		private void OnEnable()
 		{
-			localPlayerBehaviour.BalancingArrowBehaviour.OnFallingLeft += OnFallingLeft;
-			localPlayerBehaviour.BalancingArrowBehaviour.OnFallingRight += OnFallingRight;
+			localPlayerBehaviour.BalancingBehaviour.OnFallingLeft += OnFallingLeft;
+			localPlayerBehaviour.BalancingBehaviour.OnFallingRight += OnFallingRight;
 		}
 
 		private void Update()
