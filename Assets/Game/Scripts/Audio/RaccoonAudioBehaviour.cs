@@ -29,13 +29,13 @@ namespace JugglingRaccoons.Audio
 
         private JugglingBehaviour jugglingBehaviour;
         private BalancingArrowBehaviour balancingArrowBehaviour;
-        private ShootingInput shootingInput;
+        private ShootingBehaviour shootingBehaviour;
 
         private void Awake()
         {
             jugglingBehaviour = localPlayerBehaviour.JugglingBehaviour;
             balancingArrowBehaviour = localPlayerBehaviour.BalancingArrowBehaviour;
-            shootingInput = localPlayerBehaviour.ShootingInput;
+            shootingBehaviour = localPlayerBehaviour.ShootingBehaviour;
         }
 
         private void OnEnable()
@@ -44,8 +44,8 @@ namespace JugglingRaccoons.Audio
             balancingArrowBehaviour.OnBalanceLost += HandleDeath;
             balancingArrowBehaviour.OnFallingLeft += HandleWheelSqueak;
             balancingArrowBehaviour.OnFallingRight += HandleWheelSqueak;
-            shootingInput.OnTargetMissed += HandleThrowFailed;
-            shootingInput.OnTargetHit += HandleOnTargetHit;
+            shootingBehaviour.OnTargetMissed += HandleThrowFailed;
+            shootingBehaviour.OnTargetHit += HandleOnTargetHit;
         }
 
         private void Start()
@@ -97,8 +97,8 @@ namespace JugglingRaccoons.Audio
             balancingArrowBehaviour.OnBalanceLost -= HandleDeath;
             balancingArrowBehaviour.OnFallingLeft -= HandleWheelSqueak;
             balancingArrowBehaviour.OnFallingRight -= HandleWheelSqueak;
-            shootingInput.OnTargetMissed -= HandleThrowFailed;
-            shootingInput.OnTargetHit -= HandleOnTargetHit;
+            shootingBehaviour.OnTargetMissed -= HandleThrowFailed;
+            shootingBehaviour.OnTargetHit -= HandleOnTargetHit;
         }
     }
 }

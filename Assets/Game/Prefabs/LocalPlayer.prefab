@@ -94,7 +94,7 @@ MonoBehaviour:
   raccoonObject: {fileID: 7851863106132779867}
   BallAimerPivotTransform: {fileID: 1044510932322516849}
   <JugglingBehaviour>k__BackingField: {fileID: 1318985682827474097}
-  <ShootingInput>k__BackingField: {fileID: 3732316416746994116}
+  <ShootingBehaviour>k__BackingField: {fileID: 3732316416746994116}
   <BalancingArrowBehaviour>k__BackingField: {fileID: 7218953736516847782}
   disableInAwake: 0
 --- !u!95 &8935127275512100187
@@ -208,6 +208,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: rotateAimer
+      value: 
+      objectReference: {fileID: 1724274260306690087}
+    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: shootingVisual
+      value: 
+      objectReference: {fileID: 8061748460162783314}
     - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: maxTargetDistance
       value: 60
@@ -349,6 +357,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6641003026fa42e98583193ff3dddc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1724274260306690087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 121326850546389747, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418e0a451a55480596e2ce269901b5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3732316416746994116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
@@ -386,6 +405,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8778679913795353151, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
   m_PrefabInstance: {fileID: 1604073585618899668}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8061748460162783314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8765066932713474694, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+  m_PrefabInstance: {fileID: 1604073585618899668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9566bc558444b719c42ad7f311fe3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7599884512928684808
 PrefabInstance:
   m_ObjectHideFlags: 0

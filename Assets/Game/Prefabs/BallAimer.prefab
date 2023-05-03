@@ -294,7 +294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5399479764467285231}
-  - component: {fileID: 7874617269668266214}
   - component: {fileID: 1532505217824446611}
   - component: {fileID: 5291240155230107909}
   m_Layer: 0
@@ -319,24 +318,8 @@ Transform:
   - {fileID: 1169579311931211767}
   - {fileID: 6294017180499284607}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7874617269668266214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093826480391609170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418e0a451a55480596e2ce269901b5fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minAngle: 90
-  maxAngle: -90
-  targetGameObject: {fileID: 1145211383309740489}
-  speed: 1
 --- !u!114 &1532505217824446611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,13 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9566bc558444b719c42ad7f311fe3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPointer: {fileID: 1145211383309740489}
+  arrowHinge: {fileID: 6294017180499284607}
   targetZonePrefab: {fileID: 7075573968746739113, guid: 7664ef187be143a47be66ccf4a0b96ae, type: 3}
-  spriteCircle: {fileID: 215107168092191090}
-  minAngle: 90
-  maxAngle: -90
-  targetDistance: 40
-  edgeMargin: 10
 --- !u!114 &5291240155230107909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +347,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputHandler: {fileID: 0}
-  minTargetDistance: 20
-  maxTargetDistance: 40
-  targetReductionPerBall: 5
+  shootingVisual: {fileID: 1532505217824446611}
+  minValidRange: 20
+  maxValidRange: 40
+  edgeMargin: 10
+  angleStepPerBall: 5
+  arrowSpeed: 1

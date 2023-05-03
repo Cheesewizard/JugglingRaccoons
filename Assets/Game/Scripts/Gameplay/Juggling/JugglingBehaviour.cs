@@ -58,7 +58,7 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		{
 			if (localPlayer)
 			{
-				localPlayer.ShootingInput.OnTargetHit += ThrowBallAtOpponent;
+				localPlayer.ShootingBehaviour.OnTargetHit += ThrowBallAtOpponent;
 			}
 
 			Initialize();
