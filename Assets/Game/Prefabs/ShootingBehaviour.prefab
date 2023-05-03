@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 1532505217824446611}
   - component: {fileID: 5291240155230107909}
   m_Layer: 0
-  m_Name: BallAimer
+  m_Name: ShootingBehaviour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
