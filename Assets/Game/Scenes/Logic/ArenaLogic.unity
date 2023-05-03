@@ -527,9 +527,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1852696116860605819, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1837522541}
+    - target: {fileID: 1852696116860605819, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1186869161
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494554544150016204, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1837522541}
+    - target: {fileID: 2494554544150016204, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1186869161
+      objectReference: {fileID: 0}
     - target: {fileID: 5810922976683590372, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
       propertyPath: m_Name
       value: GameStateManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586941335945806693, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1837522541}
+    - target: {fileID: 6586941335945806693, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1186869161
       objectReference: {fileID: 0}
     - target: {fileID: 8853850264102175073, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
       propertyPath: playerInputManager
