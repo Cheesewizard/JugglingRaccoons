@@ -7,7 +7,7 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
     public class BalancingInput : MonoBehaviour
     {
         [SerializeField]
-        private ShootingInput shootingInput;
+        private ShootingBehaviour shootingBehaviour;
 
         [SerializeField]
         private BalancingArrowBehaviour balancingArrowBehaviour;
@@ -26,10 +26,10 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
         private void OnEnable()
         {
             currentMissedShotUnbalanceValue = minMissedShotUnbalanceValue;
-            if (shootingInput != null)
+            if (shootingBehaviour != null)
             {
-                shootingInput.OnTargetMissed += ApplyUnbalanceForce;
-                shootingInput.OnTargetHit += DecrementMissedShotUnbalanceValue;
+                shootingBehaviour.OnTargetMissed += ApplyUnbalanceForce;
+                shootingBehaviour.OnTargetHit += DecrementMissedShotUnbalanceValue;
             }
         }
 
@@ -45,10 +45,10 @@ namespace JugglingRaccoons.Gameplay.BalancingArrow
 
         private void OnDisable()
         {
-            if (shootingInput != null)
+            if (shootingBehaviour != null)
             {
-                shootingInput.OnTargetMissed -= ApplyUnbalanceForce;
-                shootingInput.OnTargetHit -= DecrementMissedShotUnbalanceValue;
+                shootingBehaviour.OnTargetMissed -= ApplyUnbalanceForce;
+                shootingBehaviour.OnTargetHit -= DecrementMissedShotUnbalanceValue;
             }
         }
 

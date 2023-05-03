@@ -18,7 +18,7 @@ namespace JugglingRaccoons.Gameplay
         public JugglingBehaviour JugglingBehaviour { get; private set; }
 
         [field: SerializeField, Required]
-        public ShootingInput ShootingInput { get; private set; }
+        public ShootingBehaviour ShootingBehaviour { get; private set; }
 
         [field: SerializeField, Required]
         public BalancingArrowBehaviour BalancingArrowBehaviour { get; private set; }

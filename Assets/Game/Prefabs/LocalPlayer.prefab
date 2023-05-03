@@ -94,7 +94,7 @@ MonoBehaviour:
   raccoonObject: {fileID: 7851863106132779867}
   BallAimerPivotTransform: {fileID: 1044510932322516849}
   <JugglingBehaviour>k__BackingField: {fileID: 1318985682827474097}
-  <ShootingInput>k__BackingField: {fileID: 3732316416746994116}
+  <ShootingBehaviour>k__BackingField: {fileID: 3732316416746994116}
   <BalancingArrowBehaviour>k__BackingField: {fileID: 7218953736516847782}
   disableInAwake: 0
 --- !u!95 &8935127275512100187
@@ -204,9 +204,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2068353732463511879, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: m_Name
+      value: ShootingBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477141287611633745, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: shootingBehaviour
+      value: 
+      objectReference: {fileID: 3732316416746994116}
     - target: {fileID: 2671252979754924139, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
+      propertyPath: rotateAimer
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2704704513573841680, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: maxTargetDistance
@@ -238,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: inputStrength
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8245018076013533810, guid: 1407dd40f97d51240979eae5945141fa, type: 3}
       propertyPath: dangerZoneAngle
@@ -464,11 +476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5146296319263830923, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.24241376
+      value: 0.24241385
       objectReference: {fileID: 0}
     - target: {fileID: 5146296319263830923, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.97017294
+      value: -0.970173
       objectReference: {fileID: 0}
     - target: {fileID: 5210582751658863426, guid: b1078bbc526033c4a96d51d2f1ad1c83, type: 3}
       propertyPath: m_IsActive
