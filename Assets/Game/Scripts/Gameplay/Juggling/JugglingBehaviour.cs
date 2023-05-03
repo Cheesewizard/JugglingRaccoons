@@ -41,9 +41,10 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		public float ThrowHeight { get; private set; } = 5f;
 
 		public float TotalJuggleTime => JuggleTime + HandPassTime;
-
-		[HideInInspector]
-		public List<JuggleBall> balls = new ();
+		
+		private List<JuggleBall> jugglingBalls = new ();
+		private List<JuggleBall> thrownBalls = new ();
+		
 		private int prevBallsCount;
 		private int delayIndex;
 		private bool isNewJuggle;
@@ -61,18 +62,14 @@ namespace JugglingRaccoons.Gameplay.Juggling
 				localPlayer.ShootingBehaviour.OnTargetHit += ThrowBallAtOpponent;
 			}
 
+			Cleanup();
 			Initialize();
 			GameplayState.OnGameplayStateEntered += Initialize;
+			GameplayState.OnGameplayStateExited += Cleanup;
 		}
 
 		private void Initialize()
 		{
-			foreach (var ball in balls)
-			{
-				Destroy(ball.gameObject);
-			}
-			balls.Clear();
-			
 			for (int i = 0; i < startingBallsCount; i++)
 			{
 				if (i > maxBallsCount)
@@ -82,7 +79,7 @@ namespace JugglingRaccoons.Gameplay.Juggling
 				}
 				
 				var ball = Instantiate(ballPrefab).GetComponent<JuggleBall>();
-				balls.Add(ball);
+				jugglingBalls.Add(ball);
 				var step = TotalJuggleTime / startingBallsCount;
 
 				ball.Delay = step * i;
@@ -90,7 +87,22 @@ namespace JugglingRaccoons.Gameplay.Juggling
 				ball.SetJugglingBehaviour(this);
 				ball.OnNewJuggle += HandleNewJuggle;
 			}
+		}
 
+		private void Cleanup()
+		{
+			foreach (var ball in jugglingBalls)
+			{
+				Destroy(ball.gameObject);
+			}
+			jugglingBalls.Clear();
+			
+			foreach (var ball in thrownBalls)
+			{
+				Destroy(ball.gameObject);
+			}
+			thrownBalls.Clear();
+			
 			delayIndex = 0;
 			isNewJuggle = false;
 			prevBallsCount = startingBallsCount;
@@ -107,11 +119,13 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		{
 			var ball = await AwaitForBallInStartingHand();
 			RemoveBall(ball);
+			thrownBalls.Add(ball);
 			ball.Throw(target);
 			ball.OnReachedTarget += BallOnOnReachedTarget;
 
 			void BallOnOnReachedTarget(JuggleBall ball)
 			{
+				thrownBalls.Remove(ball);
 				target.AddBall(ball);
 				ball.OnReachedTarget -= BallOnOnReachedTarget;
 			}
@@ -132,15 +146,15 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		
 		private async void AddBall(JuggleBall ball)
 		{
-			if (balls.Count == maxBallsCount)
+			if (jugglingBalls.Count == maxBallsCount)
 			{
 				Debug.LogError("MAX BALLS");
 				OnMaxBallsReached?.Invoke();
 			}
 
 			readyToReceiveBall = false;
-			prevBallsCount = balls.Count;
-			balls.Add(ball);
+			prevBallsCount = jugglingBalls.Count;
+			jugglingBalls.Add(ball);
 			ball.SetJugglingBehaviour(this);
 			ball.Delay = float.MaxValue;
 			ball.OnNewJuggle += HandleNewJuggle;
@@ -155,14 +169,14 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		
 		private void RemoveBall(JuggleBall ball)
 		{
-			if (!balls.Contains(ball))
+			if (!jugglingBalls.Contains(ball))
 			{
 				Debug.LogError("Cannot remove ball! Not in collection");
 				return;
 			}
 
-			prevBallsCount = balls.Count;
-			balls.Remove(ball);
+			prevBallsCount = jugglingBalls.Count;
+			jugglingBalls.Remove(ball);
 			ball.OnNewJuggle -= HandleNewJuggle;
 
 			//TODO: readjust visual correctly
@@ -180,11 +194,11 @@ namespace JugglingRaccoons.Gameplay.Juggling
 
 			// Wait!
 			isNewJuggle = true;
-			var delay = TotalJuggleTime / balls.Count;
-			var step = TotalJuggleTime / prevBallsCount - TotalJuggleTime / balls.Count;
+			var delay = TotalJuggleTime / jugglingBalls.Count;
+			var step = TotalJuggleTime / prevBallsCount - TotalJuggleTime / jugglingBalls.Count;
 
 			ball.Delay = delay - step * delayIndex++;
-			readyToReceiveBall = delayIndex >= balls.Count - 1;
+			readyToReceiveBall = delayIndex >= jugglingBalls.Count - 1;
 
 			if (readyToReceiveBall)
 			{
@@ -197,7 +211,7 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		{
 			bool done = false;
 			JuggleBall target = null;
-			foreach (var ball in balls)
+			foreach (var ball in jugglingBalls)
 			{
 				ball.OnNewJuggle += BallOnOnNewJuggle;
 			}

@@ -56,7 +56,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		private bool hasLostBalance = false;
 		private bool inDangerZone = false;
 		private bool goingRight = false;
-		private bool playerWon = false;
+		private bool applyUnbalance = false;
 
 		public event Action<int> OnBalanceLost;
 		public event Action<int> OnDangerZoneEnter;
@@ -82,21 +82,26 @@ namespace JugglingRaccoons.Gameplay.Balancing
 				shootingInput.OnTargetMissed += HandleTargetMissed;
 			}
 
+			Cleanup();
+			GameplayState.OnGameplayStateExited += Cleanup;
+			GameplayState.OnGameplayStart += Initialize;
 			GameplayState.OnPlayerWon += HandlePlayerWon;
-
-			Initialize();
-			GameplayState.OnGameplayStateEntered += Initialize;
 		}
 
-		public void Initialize()
+		private void Initialize()
+		{
+			applyUnbalance = true;
+		}
+
+		private void Cleanup()
 		{
 			currentRotation = 0.0f;
 			hasLostBalance = false;
 			inDangerZone = false;
 			goingRight = false;
-			playerWon = false;
-			seatAndPoleTransform.rotation = Quaternion.identity;
+			transform.rotation = Quaternion.identity;
 			currentUnbalanceAmount = defaultUnbalanceAmount;
+			seatAndPoleTransform.rotation = Quaternion.identity;
 		}
 		
 		[Button]
@@ -104,7 +109,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		
 		private void Update()
 		{
-			if (hasLostBalance) return;
+			if (hasLostBalance || !applyUnbalance) return;
 			
 			// Only apply the forces if the player hasn't won yet
 			if (!playerWon)
@@ -237,7 +242,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		private void HandlePlayerWon(int playerId)
 		{
 			currentRotation = 0f;
-			playerWon = true;
+			applyUnbalance = false;
 		}
 		
 		private void HandleMaxballsReached() => ApplyUnbalanceImpulse(999);
