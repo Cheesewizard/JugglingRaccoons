@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
 using JugglingRaccoons.Gameplay;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -22,6 +23,8 @@ namespace JugglingRaccoons.Core.GameStates
         private CountdownUI countdownUI;
         [SerializeField]
         private CountdownAudioBehaviour countdownAudio;
+        [SerializeField]
+        private int countdownDelay = 1;
         [SerializeField]
         private int countdown;
 
@@ -62,12 +65,19 @@ namespace JugglingRaccoons.Core.GameStates
 
         private async void StartCountdown()
         {
-            countdownUI.gameObject.SetActive(true);
-
             var prevSecond = 0;
-            timer = countdown;
+            timer = countdown + countdownDelay;
             while (timer > 0)
             {
+                if (timer > countdown)
+                {
+                    // Run through the delay silently
+                    timer -= Time.deltaTime;
+                    await UniTask.Yield();
+                    continue;
+                }
+                
+                countdownUI.gameObject.SetActive(true);
                 var seconds = (int)timer;
                 if (seconds != prevSecond)
                 {
