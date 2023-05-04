@@ -13,6 +13,9 @@ namespace JugglingRaccoons
 
         [SerializeField]
         private AudioSource sfxSource;
+        
+        [SerializeField]
+        private AudioSource rawSfxSource;
 
         public static AudioManager Instance { get; private set; }
 
@@ -38,6 +41,12 @@ namespace JugglingRaccoons
 
         public void PlayClip(AudioClip clip, bool useRandomPitch = false, float volume = 1f)
         {
+            if (!useRandomPitch)
+            {
+                rawSfxSource.PlayOneShot(clip, volume);
+                return;
+            }
+            
             sfxSource.pitch = useRandomPitch ? Random.Range(0.8f, 1.2f) : 1f;
             sfxSource.PlayOneShot(clip, volume);
         }

@@ -35,7 +35,8 @@ namespace JugglingRaccoons.Gameplay.Aiming
         public event Action OnTargetMissed;
         
         private RemapValue arrowRemapper => new(0, arrowSpeed, 0, 180);
-        
+
+        private bool ignoreInput = true;
         private float currentArrowAngle;
         private float currentTargetRange;
         private float firstRangeAngle;
@@ -43,15 +44,24 @@ namespace JugglingRaccoons.Gameplay.Aiming
         
         private void Awake()
         {
-            Initialize();
-            GameplayState.OnGameplayStateEntered += Initialize;
+            Cleanup();
+            GameplayState.OnGameplayStateExited += Cleanup;
+            GameplayState.OnGameplayStart += Initialize;
         }
 
         private void Initialize()
         {
+            shootingVisual.gameObject.SetActive(true);
             currentTargetRange = maxValidRange;
             shootingVisual.ClearTargetZone();
             GenerateAngle();
+            shootingVisual.UpdateRangeVisual(firstRangeAngle, secondRangeAngle);
+        }
+
+        private void Cleanup()
+        {
+            shootingVisual.ClearTargetZone();
+            shootingVisual.gameObject.SetActive(false);
         }
 
         private void Update()
