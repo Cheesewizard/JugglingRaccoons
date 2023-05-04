@@ -73,6 +73,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8778679913795353151}
     m_Modifications:
+    - target: {fileID: 388289649527127273, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
+      propertyPath: inputStrength
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 388289649527127273, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
+      propertyPath: idleUnbalanceAmount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1998678680039187637, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
       propertyPath: shootingInput
       value: 

@@ -29,6 +29,9 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		private float inputStrength = 70f;
 
 		[SerializeField]
+		private float idleUnbalanceAmount = 3f;
+		
+		[SerializeField]
 		private float defaultUnbalanceAmount = 30f;
 
 		[SerializeField]
@@ -56,7 +59,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		private bool hasLostBalance = false;
 		private bool inDangerZone = false;
 		private bool goingRight = false;
-		private bool applyUnbalance = false;
+		private bool idle = true;
 
 		public event Action<int> OnBalanceLost;
 		public event Action<int> OnDangerZoneEnter;
@@ -83,18 +86,19 @@ namespace JugglingRaccoons.Gameplay.Balancing
 			}
 
 			Cleanup();
-			GameplayState.OnGameplayStateExited += Cleanup;
 			GameplayState.OnGameplayStart += Initialize;
+			GameplayState.OnGameplayStateExited += Cleanup;
 			GameplayState.OnPlayerWon += HandlePlayerWon;
 		}
 
 		private void Initialize()
 		{
-			applyUnbalance = true;
+			idle = false;
 		}
 
 		private void Cleanup()
 		{
+			idle = true;
 			currentRotation = 0.0f;
 			hasLostBalance = false;
 			inDangerZone = false;
@@ -109,10 +113,10 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		
 		private void Update()
 		{
-			if (hasLostBalance || !applyUnbalance) return;
+			if (hasLostBalance) return;
 			
 			// Only apply the forces if the player hasn't won yet
-			if (!playerWon)
+			if (!idle)
 			{
 				var balanceDirection = Mathf.Sign(currentRotation);
 				
@@ -130,7 +134,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 			else
 			{
 				// Wiggle back and forth animation
-				currentRotation = Mathf.Sin(Time.time) * 20f;
+				currentRotation = Mathf.Sin(Time.time) * idleUnbalanceAmount;
 			}
 
 			// Smoothly move to the target rotation
@@ -242,7 +246,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		private void HandlePlayerWon(int playerId)
 		{
 			currentRotation = 0f;
-			applyUnbalance = false;
+			idle = true;
 		}
 		
 		private void HandleMaxballsReached() => ApplyUnbalanceImpulse(999);
