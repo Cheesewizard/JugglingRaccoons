@@ -1,6 +1,6 @@
 using JugglingRaccoons.Gameplay;
 using JugglingRaccoons.Gameplay.Aiming;
-using JugglingRaccoons.Gameplay.BalancingArrow;
+using JugglingRaccoons.Gameplay.Balancing;
 using JugglingRaccoons.Gameplay.Juggling;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -28,22 +28,22 @@ namespace JugglingRaccoons.Audio
         private AudioClip targetHitClip;
 
         private JugglingBehaviour jugglingBehaviour;
-        private BalancingArrowBehaviour balancingArrowBehaviour;
+        private BalancingBehaviour balancingBehaviour;
         private ShootingBehaviour shootingBehaviour;
 
         private void Awake()
         {
             jugglingBehaviour = localPlayerBehaviour.JugglingBehaviour;
-            balancingArrowBehaviour = localPlayerBehaviour.BalancingArrowBehaviour;
+            balancingBehaviour = localPlayerBehaviour.BalancingBehaviour;
             shootingBehaviour = localPlayerBehaviour.ShootingBehaviour;
         }
 
         private void OnEnable()
         {
             jugglingBehaviour.OnBallThrown += HandleBallThrown;
-            balancingArrowBehaviour.OnBalanceLost += HandleDeath;
-            balancingArrowBehaviour.OnFallingLeft += HandleWheelSqueak;
-            balancingArrowBehaviour.OnFallingRight += HandleWheelSqueak;
+            balancingBehaviour.OnBalanceLost += HandleDeath;
+            balancingBehaviour.OnFallingLeft += HandleWheelSqueak;
+            balancingBehaviour.OnFallingRight += HandleWheelSqueak;
             shootingBehaviour.OnTargetMissed += HandleThrowFailed;
             shootingBehaviour.OnTargetHit += HandleOnTargetHit;
         }
@@ -94,9 +94,9 @@ namespace JugglingRaccoons.Audio
         private void OnDisable()
         {
             jugglingBehaviour.OnBallThrown -= HandleBallThrown;
-            balancingArrowBehaviour.OnBalanceLost -= HandleDeath;
-            balancingArrowBehaviour.OnFallingLeft -= HandleWheelSqueak;
-            balancingArrowBehaviour.OnFallingRight -= HandleWheelSqueak;
+            balancingBehaviour.OnBalanceLost -= HandleDeath;
+            balancingBehaviour.OnFallingLeft -= HandleWheelSqueak;
+            balancingBehaviour.OnFallingRight -= HandleWheelSqueak;
             shootingBehaviour.OnTargetMissed -= HandleThrowFailed;
             shootingBehaviour.OnTargetHit -= HandleOnTargetHit;
         }

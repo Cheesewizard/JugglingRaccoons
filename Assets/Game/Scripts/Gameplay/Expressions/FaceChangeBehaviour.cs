@@ -1,6 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
-using JugglingRaccoons.Gameplay.BalancingArrow;
+using JugglingRaccoons.Gameplay.Balancing;
 using JugglingRaccoons.Gameplay.Customization;
 using UnityEngine;
 
@@ -17,14 +17,14 @@ namespace JugglingRaccoons.Gameplay.Expressions
 		[SerializeField]
 		private LocalPlayerBehaviour localPlayerBehaviour;
 
-		private BalancingArrowBehaviour balancingBehaviour;
+		private BalancingBehaviour balancingBehaviour;
 
 		private bool isBadEmotion;
 		private bool isBlinking;
 
 		private void Start()
 		{
-			balancingBehaviour = localPlayerBehaviour.BalancingArrowBehaviour;
+			balancingBehaviour = localPlayerBehaviour.BalancingBehaviour;
 
 			balancingBehaviour.OnDangerZoneEnter += HandleDangerZoneEnter;
 			balancingBehaviour.OnDangerZoneExit += HandleDangerZoneExit;

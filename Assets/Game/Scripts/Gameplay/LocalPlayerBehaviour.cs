@@ -1,5 +1,5 @@
 using JugglingRaccoons.Gameplay.Aiming;
-using JugglingRaccoons.Gameplay.BalancingArrow;
+using JugglingRaccoons.Gameplay.Balancing;
 using JugglingRaccoons.Gameplay.Juggling;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -21,7 +21,7 @@ namespace JugglingRaccoons.Gameplay
         public ShootingBehaviour ShootingBehaviour { get; private set; }
 
         [field: SerializeField, Required]
-        public BalancingArrowBehaviour BalancingArrowBehaviour { get; private set; }
+        public BalancingBehaviour BalancingBehaviour { get; private set; }
 
         [SerializeField]
         private bool disableInAwake = true;
