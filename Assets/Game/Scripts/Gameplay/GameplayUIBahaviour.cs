@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using JugglingRaccoons.Core;
 using JugglingRaccoons.Core.GameStates;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace JugglingRaccoons.Gameplay
         private GameObject playerJoinBanner;
         [SerializeField]
         private TextMeshProUGUI playerJoinText;
+        [SerializeField]
+        private float delayBeforeUiPopup = 1.5f;
 
         private void Awake()
         {
@@ -51,8 +54,10 @@ namespace JugglingRaccoons.Gameplay
             GameplayState.OnPlayerWon += OnPlayerWon;
         }
 
-        private void OnPlayerWon(int playerId)
+        private async void OnPlayerWon(int playerId)
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeUiPopup));
+            
             playerWinText.text = $"Player {playerId + 1} wins!";
             playAgainButton.gameObject.SetActive(true);
             menuButton.gameObject.SetActive(true);

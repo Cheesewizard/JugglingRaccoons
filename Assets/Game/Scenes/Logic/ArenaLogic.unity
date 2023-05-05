@@ -556,6 +556,10 @@ PrefabInstance:
       value: -1186869161
       objectReference: {fileID: 0}
     - target: {fileID: 8853850264102175073, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
+      propertyPath: countdownDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853850264102175073, guid: f0d8ebd0da09eff40912c7b4ebbb22a7, type: 3}
       propertyPath: playerInputManager
       value: 
       objectReference: {fileID: 1853612010}
