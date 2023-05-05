@@ -75,10 +75,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 388289649527127273, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
       propertyPath: inputStrength
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 388289649527127273, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
       propertyPath: idleUnbalanceAmount
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 388289649527127273, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
+      propertyPath: ballCaughtImpulseRotation
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 388289649527127273, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
+      propertyPath: missedShotImpulseRotation
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1998678680039187637, guid: 821cb1c8190c93d44849683ec69ef682, type: 3}
