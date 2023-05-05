@@ -18,7 +18,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 
 		[SerializeField]
 		private Transform seatAndPoleTransform;
-		
+
 		[SerializeField, Range(0, 360)]
 		private float angleLimit = 45f;
 
@@ -30,7 +30,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 
 		[SerializeField]
 		private float idleUnbalanceAmount = 3f;
-		
+
 		[SerializeField]
 		private float defaultUnbalanceAmount = 30f;
 
@@ -39,7 +39,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 
 		[SerializeField]
 		private float unbalanceIncrementAmount = 10f;
-		
+
 		[SerializeField]
 		private float gravityStrength = 100f;
 
@@ -77,7 +77,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 				jugglingBehaviour.OnBallThrown += HandleBallThrown;
 				jugglingBehaviour.OnMaxBallsReached += HandleMaxballsReached;
 			}
-			
+
 			// Shooting Events
 			shootingInput = localPlayerBehaviour.ShootingBehaviour;
 			if (shootingInput)
@@ -107,26 +107,26 @@ namespace JugglingRaccoons.Gameplay.Balancing
 			currentUnbalanceAmount = defaultUnbalanceAmount;
 			seatAndPoleTransform.rotation = Quaternion.identity;
 		}
-		
+
 		[Button]
 		private void ResetRotation() => Initialize();
-		
+
 		private void Update()
 		{
 			if (hasLostBalance) return;
-			
+
 			// Only apply the forces if the player hasn't won yet
 			if (!idle)
 			{
 				var balanceDirection = Mathf.Sign(currentRotation);
-				
+
 				// Apply input rotation
 				currentRotation += -playerInputHandler.BalanceValue * inputStrength * Time.deltaTime;
-				
+
 				// Apply random unbalance rotation
 				var randomRotation = Mathf.PerlinNoise1D(Time.time + playerInputHandler.PlayerId * 100f) * balanceDirection;
 				currentRotation += randomRotation * currentUnbalanceAmount * Time.deltaTime;
-				
+
 				// Apply Gravity
 				float gravityFalloff = 1.0f - Vector2.Dot(seatAndPoleTransform.up, Vector2.up);
 				currentRotation += gravityFalloff * gravityStrength * balanceDirection * Time.deltaTime;
@@ -189,14 +189,14 @@ namespace JugglingRaccoons.Gameplay.Balancing
 				jugglingBehaviour.OnBallCatched -= HandleBallCaught;
 				jugglingBehaviour.OnBallThrown -= HandleBallThrown;
 			}
-			
+
 			// Shooting Events
 			shootingInput = localPlayerBehaviour.ShootingBehaviour;
 			if (shootingInput)
 			{
 				shootingInput.OnTargetMissed -= HandleTargetMissed;
 			}
-			
+
 			GameplayState.OnPlayerWon -= HandlePlayerWon;
 		}
 
@@ -235,7 +235,8 @@ namespace JugglingRaccoons.Gameplay.Balancing
 		private void HandleBallCaught(JuggleBall ball)
 		{
 			currentUnbalanceAmount = Mathf.Min(currentUnbalanceAmount + unbalanceIncrementAmount, maxUnbalanceAmount);
-			ApplyUnbalanceImpulse(ballCaughtImpulseRotation);
+			var knockbackDirection = playerInputHandler.PlayerId == 0 ? 1 : -1;
+			currentRotation += ballCaughtImpulseRotation * knockbackDirection;
 		}
 
 		private void HandleBallThrown(JuggleBall ball)
@@ -248,7 +249,7 @@ namespace JugglingRaccoons.Gameplay.Balancing
 			currentRotation = 0f;
 			idle = true;
 		}
-		
+
 		private void HandleMaxballsReached() => ApplyUnbalanceImpulse(999);
 
 		private void HandleTargetMissed() => ApplyUnbalanceImpulse(missedShotImpulseRotation);
