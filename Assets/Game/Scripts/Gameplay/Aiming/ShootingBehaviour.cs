@@ -1,6 +1,7 @@
 using System;
 using JugglingRaccoons.Core;
 using JugglingRaccoons.Core.GameStates;
+using JugglingRaccoons.Gameplay.Juggling;
 using Quack.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace JugglingRaccoons.Gameplay.Aiming
     {
         [SerializeField]
         private PlayerInputHandler playerInputHandler;
+        
+        [SerializeField]
+        private JugglingBehaviour jugglingBehaviour;
 
         [SerializeField]
         private ShootingVisual shootingVisual;
@@ -35,8 +39,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
         public event Action OnTargetMissed;
         
         private RemapValue arrowRemapper => new(0, arrowSpeed, 0, 180);
-
-        private bool ignoreInput = true;
+        
         private float currentArrowAngle;
         private float currentTargetRange;
         private float firstRangeAngle;
@@ -46,12 +49,19 @@ namespace JugglingRaccoons.Gameplay.Aiming
         {
             Cleanup();
             GameplayState.OnGameplayStateExited += Cleanup;
+            GameplayState.OnPlayerWon += HandlePlayerWon;
             GameplayState.OnGameplayStart += Initialize;
+            jugglingBehaviour.OnBallCatched += HandleBallCaught;
+        }
+
+        private void HandlePlayerWon(int playerId)
+        {
+            shootingVisual.Hide();
         }
 
         private void Initialize()
         {
-            shootingVisual.gameObject.SetActive(true);
+            shootingVisual.Show();
             currentTargetRange = maxValidRange;
             shootingVisual.ClearTargetZone();
             GenerateAngle();
@@ -61,7 +71,12 @@ namespace JugglingRaccoons.Gameplay.Aiming
         private void Cleanup()
         {
             shootingVisual.ClearTargetZone();
-            shootingVisual.gameObject.SetActive(false);
+            shootingVisual.Hide();
+        }
+
+        private void HandleBallCaught(JuggleBall obj)
+        {
+            IncrementTargetDistance();
         }
 
         private void Update()
@@ -74,18 +89,16 @@ namespace JugglingRaccoons.Gameplay.Aiming
                 {
                     Debug.Log($"Player {playerInputHandler.PlayerId + 1} hit the target!");
                     DecrementTargetDistance();
-                    OnTargetHit?.Invoke();
                 }
                 else
                 {
                     Debug.Log($"Player {playerInputHandler.PlayerId + 1} missed the target!");
-                    OnTargetMissed?.Invoke();
                 }
                 
                 shootingVisual.ClearTargetZone();
-                //TODO: put a delay
                 GenerateAngle();
                 shootingVisual.UpdateRangeVisual(firstRangeAngle, secondRangeAngle);
+                OnTargetHit?.Invoke();
             }
             
             currentArrowAngle = arrowRemapper.Evaluate(Mathf.PingPong(Time.time, arrowSpeed));
@@ -97,8 +110,7 @@ namespace JugglingRaccoons.Gameplay.Aiming
             currentTargetRange -= angleStepPerBall;
             currentTargetRange = Mathf.Max(currentTargetRange, minValidRange);
         }
-
-        // TODO: Call this when you receive a ball
+        
         private void IncrementTargetDistance()
         {
             currentTargetRange += angleStepPerBall;

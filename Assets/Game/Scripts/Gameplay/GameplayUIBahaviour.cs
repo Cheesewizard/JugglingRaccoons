@@ -4,7 +4,6 @@ using JugglingRaccoons.Core;
 using JugglingRaccoons.Core.GameStates;
 using UnityEngine;
 using TMPro;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace JugglingRaccoons.Gameplay
@@ -56,13 +55,14 @@ namespace JugglingRaccoons.Gameplay
 
         private async void OnPlayerWon(int playerId)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeUiPopup));
-            
             playerWinText.text = $"Player {playerId + 1} wins!";
-            playAgainButton.gameObject.SetActive(true);
-            menuButton.gameObject.SetActive(true);
             playerWinText.gameObject.SetActive(true);
             playerWinsBanner.gameObject.SetActive(true);
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeUiPopup));
+            
+            playAgainButton.gameObject.SetActive(true);
+            menuButton.gameObject.SetActive(true);
         }
 
         private void OnDisable()

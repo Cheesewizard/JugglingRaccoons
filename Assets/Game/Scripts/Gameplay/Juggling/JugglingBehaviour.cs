@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using JugglingRaccoons.Core;
 using JugglingRaccoons.Core.GameStates;
@@ -44,7 +45,8 @@ namespace JugglingRaccoons.Gameplay.Juggling
 		
 		private List<JuggleBall> jugglingBalls = new ();
 		private List<JuggleBall> thrownBalls = new ();
-		
+
+		private CancellationTokenSource cancellationTokenSource = new ();
 		private int prevBallsCount;
 		private int delayIndex;
 		private bool isNewJuggle;
@@ -107,6 +109,10 @@ namespace JugglingRaccoons.Gameplay.Juggling
 			isNewJuggle = false;
 			prevBallsCount = startingBallsCount;
 			readyToReceiveBall = true;
+			
+			cancellationTokenSource?.Cancel();
+			cancellationTokenSource?.Dispose();
+			cancellationTokenSource = new CancellationTokenSource();
 		}
 		
 		public static Vector3 GetParabolicPoint(Vector3 start, Vector3 end, float height, float t)
@@ -117,7 +123,9 @@ namespace JugglingRaccoons.Gameplay.Juggling
 
 		public async void ThrowBall(JugglingBehaviour target)
 		{
-			var ball = await AwaitForBallInStartingHand();
+			var (isCanceled, ball) = await AwaitForBallInStartingHand().AttachExternalCancellation(cancellationTokenSource.Token).SuppressCancellationThrow();
+			if(isCanceled) return;
+
 			RemoveBall(ball);
 			thrownBalls.Add(ball);
 			ball.Throw(target);

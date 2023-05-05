@@ -13,6 +13,16 @@ namespace JugglingRaccoons.Gameplay.Aiming
 		private GameObject spawnedTargetZoneOne;
 		private GameObject spawnedTargetZoneTwo;
 
+		public void Show()
+		{
+			gameObject.SetActive(true);
+		}
+
+		public void Hide()
+		{
+			gameObject.SetActive(false);
+		}
+		
 		public void UpdateRangeVisual(float firstAngle, float secondAngle)
 		{
 			var flip = transform.lossyScale.x < 0;
@@ -22,6 +32,8 @@ namespace JugglingRaccoons.Gameplay.Aiming
 			var secondPosition = transform.position + new Vector3(Mathf.Cos(secondAngleRemap), Mathf.Sin(secondAngleRemap));
 			spawnedTargetZoneOne = Instantiate(targetZonePrefab, firstPosition, Quaternion.Euler(0, 0, ShootingBehaviour.RemapAngle(firstAngle)));
 			spawnedTargetZoneTwo = Instantiate(targetZonePrefab, secondPosition, Quaternion.Euler(0, 0, ShootingBehaviour.RemapAngle(secondAngle)));
+			spawnedTargetZoneOne.transform.SetParent(transform);
+			spawnedTargetZoneTwo.transform.SetParent(transform);
 		}
 
 		public void UpdateArrowVisual(float arrowAngle)
