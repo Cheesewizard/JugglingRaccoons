@@ -126,7 +126,11 @@ namespace JugglingRaccoons.Gameplay.Juggling
 			var (isCanceled, ball) = await AwaitForBallInStartingHand().AttachExternalCancellation(cancellationTokenSource.Token).SuppressCancellationThrow();
 			if(isCanceled) return;
 
-			RemoveBall(ball);
+			if(!TryRemoveBall(ball))
+			{
+				return;
+			}
+			
 			thrownBalls.Add(ball);
 			ball.Throw(target);
 			ball.OnReachedTarget += BallOnOnReachedTarget;
@@ -175,12 +179,12 @@ namespace JugglingRaccoons.Gameplay.Juggling
 			ball.Delay = 0;
 		}
 		
-		private void RemoveBall(JuggleBall ball)
+		private bool TryRemoveBall(JuggleBall ball)
 		{
 			if (!jugglingBalls.Contains(ball))
 			{
 				Debug.LogError("Cannot remove ball! Not in collection");
-				return;
+				return false;
 			}
 
 			prevBallsCount = jugglingBalls.Count;
@@ -189,6 +193,7 @@ namespace JugglingRaccoons.Gameplay.Juggling
 
 			//TODO: readjust visual correctly
 			readyToReceiveBall = false;
+			return true;
 		}
 
 		private void HandleNewJuggle(JuggleBall ball)
