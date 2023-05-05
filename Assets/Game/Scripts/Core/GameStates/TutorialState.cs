@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,8 +13,10 @@ namespace JugglingRaccoons.Core.GameStates
 		[SerializeField]
 		private GameplayState gameplayState;
 		
-		private void OnEnable()
+		private async void OnEnable()
 		{
+			await UniTask.Delay(TimeSpan.FromSeconds(1));
+			
 			EventSystem.current.SetSelectedGameObject(startButton.gameObject);
 		}
 
